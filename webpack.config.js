@@ -15,7 +15,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: 'To-do',
+            // Load a custom template (lodash by default)
+            template: 'src/index.html',
+            filename: 'index.html',
         }),
     ],
     output: {
