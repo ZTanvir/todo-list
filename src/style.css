@@ -46,11 +46,19 @@ header .theme-change .fa-circle-half-stroke:hover {
   cursor: pointer;
 }
 /* Header section end */
+
+/* Aside left sidebar section start */
 aside {
   grid-column: 1/2;
   grid-row: 2/-1;
   background-color: var(--asideBg, #f2f3f5);
+  padding: 10px;
 }
+.fixed-task h3 {
+  border-bottom: 1px solid gray;
+}
+/* Aside left sidebar section end */
+
 .todo-list-section {
   grid-column: 2/-1;
   grid-row: 2/-1;
