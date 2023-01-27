@@ -1,4 +1,12 @@
-h1 {
-  color: red;
-  background-color: aquamarine;
+.todo-page {
+  background-color: yellow;
+}
+header {
+  background-color: green;
+}
+aside {
+  background-color: aqua;
+}
+.hero-section {
+  background-color: tomato;
 }

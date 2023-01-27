@@ -20,6 +20,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "loadash": "^1.0.0"
+    "loadash": "^1.0.0",
+    "normalize.css": "^8.0.1"
   }
 }
