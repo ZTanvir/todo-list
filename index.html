@@ -6,22 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        To-do
+        <%= htmlWebpackPlugin.options.title %>
     </title>
 <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
 
 <body>
     <div class="todo-page">
         <header>
-            <div class="hide-aside"></div>
-            <h1 class="title"> <span class="title-icon"></span> To-Do</h1>
-            <div class="theme-change"></div>
+            <div class="hide-aside"><i class="fa-solid fa-bars fa-lg"></i></div>
+            <h1 class="title"> <span class="title-icon"><i class="fas fa-check-circle"></i></span> To-Do</h1>
+            <div class="theme-change"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></div>
         </header>
         <aside>
             <div class="fixed-task">
                 <h3>Home</h3>
                 <div class="fixed-task-list">
-                    <div class="all-task"><span class="all-task-icon"></span>All Tasks</div>
+                    <div class="all-task">
+                        <img src="[object Module]" alt="" srcset="">
+                        <div> All Tasks</div>
+                    </div>
                     <div class="today-task"><span class="today-task-icon"></span>Today</div>
                     <div class="this-week-task"><span class="this-week-task"></span>Next 7 Days</div>
                     <div class="important-task"><span class="important-task-list"></span>Important</div>
@@ -34,7 +37,7 @@
                 </div>
             </div>
         </aside>
-        <section class="hero-section">
+        <section class="todo-list-section">
             <h2>All tasks</h2>
             <div class="task-list">
                 <div class="add-task">
