@@ -9,7 +9,11 @@ header {
   background-color: green;
   grid-column: 1/-1;
   grid-row: 1/2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
 }
+
 aside {
   background-color: aqua;
   grid-column: 1/2;
