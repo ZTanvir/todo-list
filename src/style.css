@@ -6,7 +6,6 @@
   --todoListBg: #fefcfe;
 }
 .todo-page {
-  background-color: yellow;
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 6fr;
@@ -18,18 +17,32 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
+  background-color: var(--headerBg, #ececec);
+  border-bottom: 3px solid var(--accentDark, #2abd67);
 }
 header .title {
   text-align: center;
 }
-
+header .title .title-icon {
+  color: var(--accentDark, #2abd67);
+}
+header .hide-aside {
+  margin-left: 10px;
+}
+header .hide-aside .fa-bars {
+  padding: 10px;
+}
+header .hide-aside .fa-bars:hover {
+  background-color: white;
+  cursor: pointer;
+}
 aside {
-  background-color: aqua;
   grid-column: 1/2;
   grid-row: 2/-1;
+  background-color: var(--asideBg, #f2f3f5);
 }
 .todo-list-section {
-  background-color: tomato;
   grid-column: 2/-1;
   grid-row: 2/-1;
+  background-color: var(--todoListBg, #fefcfe);
 }
