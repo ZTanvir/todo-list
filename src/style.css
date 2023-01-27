@@ -11,6 +11,7 @@
   grid-template-rows: 1fr 6fr;
   height: 100vh;
 }
+/* Header section start */
 header {
   grid-column: 1/-1;
   grid-row: 1/2;
@@ -26,16 +27,25 @@ header .title {
 header .title .title-icon {
   color: var(--accentDark, #2abd67);
 }
-header .hide-aside {
-  margin-left: 10px;
-}
 header .hide-aside .fa-bars {
+  margin-left: 10px;
   padding: 10px;
 }
 header .hide-aside .fa-bars:hover {
-  background-color: white;
+  background-color: var(--white, white);
   cursor: pointer;
 }
+header .theme-change {
+  justify-self: end;
+}
+header .theme-change .fa-circle-half-stroke {
+  margin-right: 10px;
+  padding: 10px;
+}
+header .theme-change .fa-circle-half-stroke:hover {
+  cursor: pointer;
+}
+/* Header section end */
 aside {
   grid-column: 1/2;
   grid-row: 2/-1;
