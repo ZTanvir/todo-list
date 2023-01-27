@@ -13,6 +13,11 @@ header {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
 }
+header .title {
+  text-align: center;
+}
+header .title-icon {
+}
 
 aside {
   background-color: aqua;
