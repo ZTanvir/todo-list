@@ -63,11 +63,17 @@ aside {
   justify-content: flex-start;
   align-items: center;
 }
-.all-task > img,
-.today-task > img,
-.this-week-task > img,
-.important-task > img {
+.fixed-task-list div:hover {
+  background-color: #fefcfe;
+}
+.fixed-task-list .all-task > img,
+.fixed-task-list .today-task > img,
+.fixed-task-list .this-week-task > img,
+.fixed-task-list .important-task > img {
   width: 10%;
+}
+.fixed-task .projects-list h3 {
+  border-bottom: 1px solid gray;
 }
 
 /* Aside left sidebar section end */
