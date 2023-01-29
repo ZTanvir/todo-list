@@ -57,6 +57,18 @@ aside {
 .fixed-task h3 {
   border-bottom: 1px solid gray;
 }
+.fixed-task-list div {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.all-task > img,
+.today-task > img,
+.this-week-task > img,
+.important-task > img {
+  width: 10%;
+}
 /* Aside left sidebar section end */
 
 .todo-list-section {
