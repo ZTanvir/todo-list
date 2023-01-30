@@ -105,6 +105,11 @@ aside {
 .add-project-btn .btn-cancel {
   background-color: var(--deepRed);
 }
+.add-project .add-project-text {
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+}
 /* Aside left sidebar section end */
 
 .todo-list-section {
