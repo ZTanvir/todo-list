@@ -4,6 +4,7 @@
   --headerBg: #ececec;
   --asideBg: #f2f3f5;
   --todoListBg: #fefcfe;
+  --deepRed: rgb(99, 3, 3);
 }
 .todo-page {
   display: grid;
@@ -84,7 +85,26 @@ aside {
 .add-project-field .add-project-input input[type="text"] {
   padding: 10px;
 }
+.add-project-field .add-project-btn {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
+.add-project-field .add-project-btn button {
+  padding: 10px 15px;
+  width: 100px;
+  border: none;
+  color: var(--white);
+  border-radius: 5px;
+}
+
+.add-project-btn .btn-add {
+  background-color: var(--accentDark);
+}
+.add-project-btn .btn-cancel {
+  background-color: var(--deepRed);
+}
 /* Aside left sidebar section end */
 
 .todo-list-section {
