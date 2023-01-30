@@ -9,7 +9,7 @@
 .todo-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 1fr 10fr;
   height: 100vh;
 }
 /* Header section start */
@@ -55,7 +55,9 @@ aside {
   background-color: var(--asideBg, #f2f3f5);
   padding: 10px;
 }
-.fixed-task h3 {
+.fixed-task h2,
+.projects-list h2 {
+  padding-bottom: 5px;
   border-bottom: 1px solid gray;
 }
 .fixed-task-list div {
@@ -63,18 +65,22 @@ aside {
   gap: 10px;
   justify-content: flex-start;
   align-items: center;
+  padding: 5px 10px;
 }
-.fixed-task-list div:hover {
+.fixed-task-list div:hover,
+.add-project-field:hover,
+.add-project-text:hover {
   background-color: #fefcfe;
 }
+
 .fixed-task-list .all-task > img,
 .fixed-task-list .today-task > img,
 .fixed-task-list .this-week-task > img,
 .fixed-task-list .important-task > img {
   width: 10%;
 }
-.projects-list h3 {
-  border-bottom: 1px solid gray;
+.add-project-field {
+  padding: 10px 10px;
 }
 .add-project-field .add-project-input {
   display: flex;
@@ -105,10 +111,12 @@ aside {
 .add-project-btn .btn-cancel {
   background-color: var(--deepRed);
 }
+
 .add-project .add-project-text {
   display: flex;
   gap: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
+  padding: 5px 10px;
 }
 /* Aside left sidebar section end */
 
