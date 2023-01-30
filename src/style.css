@@ -75,6 +75,15 @@ aside {
 .projects-list h3 {
   border-bottom: 1px solid gray;
 }
+.add-project-field .add-project-input {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+}
+.add-project-field .add-project-input input[type="text"] {
+  padding: 10px;
+}
 
 /* Aside left sidebar section end */
 
