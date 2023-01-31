@@ -104,6 +104,7 @@ aside {
   border: none;
   color: var(--white);
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .add-project-btn .btn-add {
@@ -135,3 +136,4 @@ aside {
   color: var(--white);
 }
 /* All to do list section end */
+/* Todo add font and resize font ass section */
