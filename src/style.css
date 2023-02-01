@@ -69,11 +69,6 @@ aside {
   align-items: center;
   padding: 5px 10px;
 }
-.fixed-task-list div:hover,
-.add-project-field:hover,
-.add-project-text:hover {
-  background-color: #fefcfe;
-}
 
 .fixed-task-list .all-task > img,
 .fixed-task-list .today-task > img,
@@ -121,6 +116,15 @@ aside {
   gap: 40px;
   margin-top: 20px;
   padding: 5px 10px;
+}
+.project-list > div {
+  padding: 5px 10px;
+}
+.fixed-task-list div:hover,
+.add-project-field:hover,
+.add-project-text:hover,
+.project-list > div:hover {
+  background-color: #fefcfe;
 }
 /* Aside left sidebar section end */
 
