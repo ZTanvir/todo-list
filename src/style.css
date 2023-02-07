@@ -143,3 +143,6 @@ aside {
 }
 /* All to do list section end */
 /* Todo add font and resize font ass section */
+.hidden {
+  display: none;
+}
