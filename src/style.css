@@ -146,3 +146,13 @@ aside {
 .hidden {
   display: none;
 }
+.todo-list-section .add-task {
+  display: flex;
+  justify-content: space-between;
+}
+.add-task input[type="text"],
+input[type="date"] {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid var(--accentDark);
+}
