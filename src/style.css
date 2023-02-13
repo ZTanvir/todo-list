@@ -156,3 +156,11 @@ input[type="date"] {
   border: none;
   border-bottom: 3px solid var(--accentDark);
 }
+.add-task .add-task-btn {
+  background-color: var(--accentDark);
+  border: none;
+  color: var(--asideBg);
+}
+.add-task-btn:is(:hover, :focus) {
+  cursor: pointer;
+}
