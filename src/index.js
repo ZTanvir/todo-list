@@ -21,6 +21,7 @@ addProjectEl.addEventListener("click", () => {
 addBtnEl.addEventListener("click", () => {
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
+    divEl.dataset.project = projectFieldEl.value;
     projectListEl.appendChild(divEl);
     //Clear project name
     projectFieldEl.value = '';
