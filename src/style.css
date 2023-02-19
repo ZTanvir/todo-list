@@ -125,6 +125,7 @@ aside {
 .add-project-text:hover,
 .project-list > div:hover {
   background-color: #fefcfe;
+  cursor: pointer;
 }
 /* Aside left sidebar section end */
 
