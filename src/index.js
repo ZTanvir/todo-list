@@ -14,6 +14,7 @@ const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
+const inputTodo = document.querySelector("#get-todo");
 
 // All projects
 let allProject = {};
@@ -46,7 +47,15 @@ cancelBtnEl.addEventListener("click", () => {
 
 // Create todo class
 const todo = (taskName, date, priority) => {
-
     return { taskName, date, priority };
 }
 
+// click on add todo list
+inputTodo.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const todoName = document.querySelector("#task-name");
+    const todoDate = document.querySelector("#pick-date");
+    const todoPriority = document.querySelector("#priority");
+
+    console.log(todoName.value, todoDate.value, todoPriority.value);
+})
