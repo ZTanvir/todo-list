@@ -48,8 +48,8 @@ cancelBtnEl.addEventListener("click", () => {
 
 const todoList = [];
 // Create todo class
-const Todo = (taskName, date, priority, done) => {
-    return { taskName, date, priority, done };
+const Todo = (taskName, taskDate, taskPriority, taskDone) => {
+    return { taskName, taskDate, taskPriority, taskDone };
 }
 
 // click on add todo list
@@ -63,8 +63,18 @@ inputTodo.addEventListener("submit", (e) => {
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     todoList.push(genarateTodo);
     console.log(todoList);
+    console.log(typeof (todoList[0].taskDate));
+
 
 })
+const renderTodoList = () => {
+    const taskList = document.querySelector(".show-task-list");
+    // Remove all todo list from front
+    while (taskList.lastChild) {
+        taskList.removeChild(taskList.lastChild);
+    }
+}
+renderTodoList();
 // const dates = [
 //     new Date(1995, 6, 2),
 //     new Date(1987, 1, 11),
