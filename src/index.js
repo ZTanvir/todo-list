@@ -73,6 +73,32 @@ const clearDiv = (htmlElement) => {
         htmlElement.removeChild(htmlElement.lastChild);
     }
 }
+// Genarate html based on todo list 
+const genarateTodoHtml = (taskName, taskDate, taskPriority) => {
+    // checkbox
+    let checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
+    // div task name
+    let divTodoName = document.createElement("div");
+    divTodoName.textContent = taskName;
+    // div task date
+    let divTodoDate = document.createElement("div");
+    divTodoDate.textContent = taskDate;
+    // btn task priority
+    let btnTodoPriority = document.createElement("button");
+    btnTodoPriority.textContent = taskPriority;
+    // edit 
+    let faEdit = document.createElement("i");
+    faEdit.classList.add("fa-solid", "fa-pen-to-square");
+    // delete 
+    let faDelete = document.createElement("i");
+    faDelete.classList.add("fa-solid", "fa-delete-left");
+
+    // div that contain all todo element
+    let div = document.createElement("div");
+
+}
+
 const renderTodoList = () => {
     const taskList = document.querySelector(".show-task-list");
     clearDiv(taskList);
