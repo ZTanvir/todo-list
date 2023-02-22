@@ -67,12 +67,15 @@ inputTodo.addEventListener("submit", (e) => {
 
 
 })
+// Remove nodes from a parent node
+const clearDiv = (htmlElement) => {
+    while (htmlElement.lastChild) {
+        htmlElement.removeChild(htmlElement.lastChild);
+    }
+}
 const renderTodoList = () => {
     const taskList = document.querySelector(".show-task-list");
-    // Remove all todo list from front
-    while (taskList.lastChild) {
-        taskList.removeChild(taskList.lastChild);
-    }
+    clearDiv(taskList);
 }
 renderTodoList();
 // const dates = [
