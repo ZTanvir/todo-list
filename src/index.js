@@ -78,6 +78,10 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority) => {
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
+    checkBox.setAttribute("id", "task");
+    // checkbox label
+    let label = document.createElement("label");
+    label.setAttribute("for", "task")
     // div task name
     let divTodoName = document.createElement("div");
     divTodoName.textContent = taskName;
@@ -87,21 +91,50 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority) => {
     // btn task priority
     let btnTodoPriority = document.createElement("button");
     btnTodoPriority.textContent = taskPriority;
-    // edit 
-    let faEdit = document.createElement("i");
-    faEdit.classList.add("fa-solid", "fa-pen-to-square");
+
     // delete 
     let faDelete = document.createElement("i");
     faDelete.classList.add("fa-solid", "fa-delete-left");
+    // edit 
+    let faEdit = document.createElement("i");
+    faEdit.classList.add("fa-solid", "fa-pen-to-square");
+
+    // contain checkbox and id
+    let checkboxDiv = document.createElement("div");
+    checkboxDiv.classList.add("todo-left-side");
+    checkboxDiv.appendChild(checkBox);
+    checkboxDiv.appendChild(label);
+
+    // contain date,prority,edit,delete
+    let otherDiv = document.createElement("div");
+    otherDiv.classList.add("todo-right-side");
+    otherDiv.appendChild(divTodoDate);
+    otherDiv.appendChild(btnTodoPriority);
+    otherDiv.appendChild(faDelete);
+    otherDiv.appendChild(faEdit);
 
     // div that contain all todo element
     let div = document.createElement("div");
+    div.classList.add("todo-list");
 
+    // insert task name to label
+    label.appendChild(divTodoName);
+
+    // insert all item to a single div
+    div.appendChild(checkboxDiv);
+    div.appendChild(otherDiv);
+
+    return div;
 }
 
 const renderTodoList = () => {
     const taskList = document.querySelector(".show-task-list");
     clearDiv(taskList);
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
+
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
+
 }
 renderTodoList();
 // const dates = [

@@ -165,3 +165,32 @@ input[type="date"] {
 .add-task-btn:is(:hover, :focus) {
   cursor: pointer;
 }
+
+:is(.fa-pen-to-square, .fa-delete-left) {
+  color: var(--accentDark);
+}
+.show-task-list {
+  display: grid;
+  gap: 10px;
+}
+.show-task-list .todo-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.show-task-list .todo-left-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.show-task-list .todo-right-side {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+}
+.show-task-list .todo-right-side > button {
+  background: none;
+  border: 2px solid var(--accentDark);
+  border-radius: 5px;
+}
