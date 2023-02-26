@@ -194,3 +194,7 @@ input[type="date"] {
   border: 2px solid var(--accentDark);
   border-radius: 5px;
 }
+.todo-list-section #get-todo {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}

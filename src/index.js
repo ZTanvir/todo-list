@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+import { genarateTodoHtml, clearDiv } from './functions.js';
 
 const addBtnEl = document.querySelector(".btn-add");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -63,77 +64,19 @@ inputTodo.addEventListener("submit", (e) => {
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     todoList.push(genarateTodo);
     console.log(todoList);
-    console.log(typeof (todoList[0].taskDate));
-
+    console.log(todoList[0].taskDate);
+    todoList[0].taskDone = true;
 
 })
-// Remove nodes from a parent node
-const clearDiv = (htmlElement) => {
-    while (htmlElement.lastChild) {
-        htmlElement.removeChild(htmlElement.lastChild);
-    }
-}
-// Genarate html based on todo list 
-const genarateTodoHtml = (taskName, taskDate, taskPriority) => {
-    // checkbox
-    let checkBox = document.createElement("input");
-    checkBox.setAttribute("type", "checkbox");
-    checkBox.setAttribute("id", "task");
-    // checkbox label
-    let label = document.createElement("label");
-    label.setAttribute("for", "task")
-    // div task name
-    let divTodoName = document.createElement("div");
-    divTodoName.textContent = taskName;
-    // div task date
-    let divTodoDate = document.createElement("div");
-    divTodoDate.textContent = taskDate;
-    // btn task priority
-    let btnTodoPriority = document.createElement("button");
-    btnTodoPriority.textContent = taskPriority;
 
-    // delete 
-    let faDelete = document.createElement("i");
-    faDelete.classList.add("fa-solid", "fa-delete-left");
-    // edit 
-    let faEdit = document.createElement("i");
-    faEdit.classList.add("fa-solid", "fa-pen-to-square");
-
-    // contain checkbox and id
-    let checkboxDiv = document.createElement("div");
-    checkboxDiv.classList.add("todo-left-side");
-    checkboxDiv.appendChild(checkBox);
-    checkboxDiv.appendChild(label);
-
-    // contain date,prority,edit,delete
-    let otherDiv = document.createElement("div");
-    otherDiv.classList.add("todo-right-side");
-    otherDiv.appendChild(divTodoDate);
-    otherDiv.appendChild(btnTodoPriority);
-    otherDiv.appendChild(faDelete);
-    otherDiv.appendChild(faEdit);
-
-    // div that contain all todo element
-    let div = document.createElement("div");
-    div.classList.add("todo-list");
-
-    // insert task name to label
-    label.appendChild(divTodoName);
-
-    // insert all item to a single div
-    div.appendChild(checkboxDiv);
-    div.appendChild(otherDiv);
-
-    return div;
-}
 
 const renderTodoList = () => {
     const taskList = document.querySelector(".show-task-list");
     clearDiv(taskList);
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 0));
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 1));
 
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent"));
+    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 2));
 
 }
 renderTodoList();
