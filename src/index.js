@@ -26,7 +26,7 @@ addProjectEl.addEventListener("click", () => {
     projectField.classList.toggle("hidden");
 })
 
-// Add a project to the list when click on add btn
+// Add a project to the project section
 addBtnEl.addEventListener("click", () => {
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;

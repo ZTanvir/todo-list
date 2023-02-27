@@ -1,15 +1,17 @@
 // Genarate html based on todo list 
-const genarateTodoHtml = (taskName, taskDate, taskPriority, taskSerial) => {
+const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
+    // make the label and checkbox unique for each todo list task
+    let taskUniqueId = `${taskName}${taskSerial}`;
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
-    checkBox.setAttribute("id", "task");
+    checkBox.setAttribute("id", taskUniqueId);
     // checkbox label
     let label = document.createElement("label");
-    label.setAttribute("for", "task")
+    label.setAttribute("for", taskUniqueId)
     // div task name
-    let divTodoName = document.createElement("div");
-    divTodoName.textContent = taskName;
+    let paraTodoName = document.createElement("p");
+    paraTodoName.textContent = taskName;
     // div task date
     let divTodoDate = document.createElement("div");
     divTodoDate.textContent = taskDate;
@@ -20,9 +22,11 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskSerial) => {
     // delete 
     let faDelete = document.createElement("i");
     faDelete.classList.add("fa-solid", "fa-delete-left");
+    faDelete.setAttribute("title", "Delete Todo");
     // edit 
     let faEdit = document.createElement("i");
     faEdit.classList.add("fa-solid", "fa-pen-to-square");
+    faEdit.setAttribute("title", "Edit Todo");
 
     // contain checkbox and id
     let checkboxDiv = document.createElement("div");
@@ -43,7 +47,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskSerial) => {
     div.classList.add("todo-list");
 
     // insert task name to label
-    label.appendChild(divTodoName);
+    label.appendChild(paraTodoName);
 
     // insert all item to a single div
     div.appendChild(checkboxDiv);
