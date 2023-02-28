@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
-import { genarateTodoHtml, clearDiv } from './functions.js';
+import { genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
 
 const addBtnEl = document.querySelector(".btn-add");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -66,23 +66,20 @@ inputTodo.addEventListener("submit", (e) => {
     console.log(todoList);
     console.log(todoList[0].taskDate);
     todoList[0].taskDone = true;
+    for (let i = 0; i < todoList.length; i++) { }
 
 })
 
+// .show-task-list
 
-const renderTodoList = () => {
-    const taskList = document.querySelector(".show-task-list");
-    clearDiv(taskList);
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 0));
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 1));
-
-    taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", 2));
-
-}
-renderTodoList();
 // const dates = [
 //     new Date(1995, 6, 2),
 //     new Date(1987, 1, 11),
 //     new Date(1989, 6, 10),
 // ]
 // console.log(dates.sort(compareAsc))
+
+// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 0));
+// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
+
+// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 2));

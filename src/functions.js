@@ -1,20 +1,32 @@
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
+
     let taskUniqueId = `${taskName}${taskSerial}`;
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
     checkBox.setAttribute("id", taskUniqueId);
+
     // checkbox label
     let label = document.createElement("label");
     label.setAttribute("for", taskUniqueId)
+
     // div task name
     let paraTodoName = document.createElement("p");
     paraTodoName.textContent = taskName;
+    paraTodoName.classList.add("taskName");
+
+    // When task is compelete 
+    // add line through to the text
+    if (taskComplete == true) {
+        paraTodoName.style.textDecoration = "line-through";
+    }
+
     // div task date
     let divTodoDate = document.createElement("div");
     divTodoDate.textContent = taskDate;
+
     // btn task priority
     let btnTodoPriority = document.createElement("button");
     btnTodoPriority.textContent = taskPriority;
@@ -23,6 +35,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     let faDelete = document.createElement("i");
     faDelete.classList.add("fa-solid", "fa-delete-left");
     faDelete.setAttribute("title", "Delete Todo");
+
     // edit 
     let faEdit = document.createElement("i");
     faEdit.classList.add("fa-solid", "fa-pen-to-square");
@@ -62,5 +75,10 @@ const clearDiv = (htmlElement) => {
         htmlElement.removeChild(htmlElement.lastChild);
     }
 }
+const renderTodoList = (domElement, taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
+    const taskList = document.querySelector(domElement);
+    clearDiv(taskList);
+    taskList.appendChild(genarateTodoHtml(taskName, taskDate, taskPriority, taskComplete, taskSerial));
 
-export { genarateTodoHtml, clearDiv };
+}
+export { genarateTodoHtml, clearDiv, renderTodoList };
