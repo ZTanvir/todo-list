@@ -70,14 +70,14 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     return div;
 }
 // Remove nodes from a parent node
-const clearDiv = (htmlElement) => {
-    while (htmlElement.lastChild) {
-        htmlElement.removeChild(htmlElement.lastChild);
+const clearDiv = (domElement) => {
+    const taskList = document.querySelector(domElement);
+    while (taskList.lastChild) {
+        taskList.removeChild(taskList.lastChild);
     }
 }
 const renderTodoList = (domElement, taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     const taskList = document.querySelector(domElement);
-    clearDiv(taskList);
     taskList.appendChild(genarateTodoHtml(taskName, taskDate, taskPriority, taskComplete, taskSerial));
 
 }

@@ -47,7 +47,10 @@ cancelBtnEl.addEventListener("click", () => {
     projectField.classList.toggle("hidden");
 })
 
-const todoList = [];
+const todoList = [
+    { taskName: 'Eat Breakfast', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: true }
+    , { taskName: 'Learn Javascipt', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: false }
+];
 // Create todo class
 const Todo = (taskName, taskDate, taskPriority, taskDone) => {
     return { taskName, taskDate, taskPriority, taskDone };
@@ -66,10 +69,20 @@ inputTodo.addEventListener("submit", (e) => {
     console.log(todoList);
     console.log(todoList[0].taskDate);
     todoList[0].taskDone = true;
-    for (let i = 0; i < todoList.length; i++) { }
-
+    clearDiv(".show-task-list");
+    for (let i = 0; i < todoList.length; i++) {
+        renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);
+    }
+    // Reset todo input field
+    inputTodo.reset();
 })
-
+// when we already have todo list before adding new todo list
+if (todoList.length != 0) {
+    clearDiv(".show-task-list");
+    for (let i = 0; i < todoList.length; i++) {
+        renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);
+    }
+}
 // .show-task-list
 
 // const dates = [
