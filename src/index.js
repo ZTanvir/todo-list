@@ -69,6 +69,7 @@ inputTodo.addEventListener("submit", (e) => {
     console.log(todoList);
     console.log(todoList[0].taskDate);
     todoList[0].taskDone = true;
+    console.log(todoDate.valueAsNumber);
     clearDiv(".show-task-list");
     for (let i = 0; i < todoList.length; i++) {
         renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);

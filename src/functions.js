@@ -76,6 +76,7 @@ const clearDiv = (domElement) => {
         taskList.removeChild(taskList.lastChild);
     }
 }
+// render todo list based on user input
 const renderTodoList = (domElement, taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     const taskList = document.querySelector(domElement);
     taskList.appendChild(genarateTodoHtml(taskName, taskDate, taskPriority, taskComplete, taskSerial));
