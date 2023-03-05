@@ -1,3 +1,4 @@
+import { todoList } from "./index.js";
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
@@ -6,7 +7,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
-    checkBox.setAttribute("id", taskUniqueId);
+    checkBox.setAttribute("data-checkboxindex",taskSerial);
 
     // checkbox label
     let label = document.createElement("label");
@@ -65,7 +66,24 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // insert all item to a single div
     div.appendChild(checkboxDiv);
     div.appendChild(otherDiv);
-    div.setAttribute("data-index", taskSerial);
+    div.setAttribute("data-divindex", taskSerial);
+
+    // done task when click on checkbox
+    checkBox.addEventListener("click",(e)=>{
+        console.log(e.target.dataset.checkboxindex);
+        let checkBoxIndex = Number(e.target.dataset.checkboxindex);
+        // checked if the chekbox is checked
+        let isChecked = e.target.checked;
+        if(isChecked){
+            e.target.parentNode.lastChild.style.textDecoration = "line-through";
+            todoList[checkBoxIndex].taskDone =true;
+        }else if (!isChecked){
+            e.target.parentNode.lastChild.style.textDecoration = "none";
+            todoList[checkBoxIndex].taskDone =false;
+
+        }
+        console.log(todoList);
+    })
 
     return div;
 }

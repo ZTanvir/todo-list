@@ -97,3 +97,5 @@ if (todoList.length != 0) {
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
 
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 2));
+
+export {todoList};
