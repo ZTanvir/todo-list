@@ -86,12 +86,13 @@ if (todoList.length != 0) {
 }
 // .show-task-list
 
-// const dates = [
-//     new Date(1995, 6, 2),
-//     new Date(1987, 1, 11),
-//     new Date(1989, 6, 10),
-// ]
-// console.log(dates.sort(compareAsc))
+const dates = [
+    new Date(1995, 6, 2),
+    new Date(1987, 1, 11),
+    new Date(1989, 6, 10),
+]
+console.log(dates.sort(compareAsc))
+
 
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 0));
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
