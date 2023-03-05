@@ -21,7 +21,11 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // When task is compelete 
     // add line through to the text
     if (taskComplete == true) {
+        checkBox.checked = true;
         paraTodoName.style.textDecoration = "line-through";
+    }else if(taskComplete == false){
+        checkBox.checked = false;
+        paraTodoName.style.textDecoration = "none";
     }
 
     // div task date
@@ -73,14 +77,14 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         console.log(e.target.dataset.checkboxindex);
         let checkBoxIndex = Number(e.target.dataset.checkboxindex);
         // checked if the chekbox is checked
-        let isChecked = e.target.checked;
+        let isChecked = e.target.checked
+        console.log(e.target.parentNode.lastChild.lastChild);
         if(isChecked){
-            e.target.parentNode.lastChild.style.textDecoration = "line-through";
+            e.target.parentNode.lastChild.lastChild.style.textDecoration = "line-through";
             todoList[checkBoxIndex].taskDone =true;
         }else if (!isChecked){
-            e.target.parentNode.lastChild.style.textDecoration = "none";
+            e.target.parentNode.lastChild.lastChild.style.textDecoration = "none";
             todoList[checkBoxIndex].taskDone =false;
-
         }
         console.log(todoList);
     })
