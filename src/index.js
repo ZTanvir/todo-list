@@ -14,6 +14,7 @@ const projectFieldEl = document.querySelector("#input-project-name");
 const projectListEl = document.querySelector(".project-list");
 const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
+let projectsEl = document.querySelectorAll('.projects');
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
 const inputTodo = document.querySelector("#get-todo");
@@ -31,6 +32,7 @@ projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
+    divEl.classList.add("projects");
     divEl.dataset.project = projectFieldEl.value;
     projectListEl.appendChild(divEl);
     console.log(divEl.dataset.project);
@@ -41,7 +43,17 @@ projectForm.addEventListener("submit", (e) => {
     projectField.classList.toggle("hidden");
     // reset the form
     projectForm.reset();
+    projectsEl = document.querySelectorAll('.projects');
+    projectsEl.forEach((project)=>{
+        project.addEventListener("click",(e)=>{
+            project.classList.toggle("project-active");
+            console.log("click project");
+        })
+    })
+   
+    console.log(projectsEl);
 })
+
 
 // Hide a project input field when click on cancel btn
 cancelBtnEl.addEventListener("click", () => {

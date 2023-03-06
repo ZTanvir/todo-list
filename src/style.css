@@ -196,11 +196,12 @@ aside {
 .project-list > div {
   padding: 5px 10px;
   margin:10px 0px;
+  border: 1px solid var(--accentDark);
+  border-radius: 1rem;
 }
 .fixed-task-list div:hover,
 .add-project-field:hover,
-.add-project-text:hover,
-.project-list > div:hover {
+.add-project-text:hover {
   background-color: #fefcfe;
   cursor: pointer;
 }
@@ -218,6 +219,9 @@ aside {
   padding: 30px;
   text-align: center;
   color: var(--white);
+}
+.project-active{
+  background-color: var(--accentDark);
 }
 /* All to do list section end */
 /* Todo add font and resize font ass section */
