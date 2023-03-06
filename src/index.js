@@ -8,7 +8,7 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import { genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
 
-const addBtnEl = document.querySelector(".btn-add");
+const projectForm = document.querySelector("#add-project");
 const cancelBtnEl = document.querySelector(".btn-cancel");
 const projectFieldEl = document.querySelector("#input-project-name");
 const projectListEl = document.querySelector(".project-list");
@@ -27,7 +27,8 @@ addProjectEl.addEventListener("click", () => {
 })
 
 // Add a project to the project section
-addBtnEl.addEventListener("click", () => {
+projectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
     divEl.dataset.project = projectFieldEl.value;
@@ -37,9 +38,9 @@ addBtnEl.addEventListener("click", () => {
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
     console.log(allProject);
-    //Clear project name
-    projectFieldEl.value = '';
     projectField.classList.toggle("hidden");
+    // reset the form
+    projectForm.reset();
 })
 
 // Hide a project input field when click on cancel btn
