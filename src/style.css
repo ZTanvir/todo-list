@@ -195,6 +195,7 @@ aside {
 }
 .project-list > div {
   padding: 5px 10px;
+  margin:10px 0px;
 }
 .fixed-task-list div:hover,
 .add-project-field:hover,
