@@ -48,8 +48,8 @@ cancelBtnEl.addEventListener("click", () => {
 })
 
 const todoList = [
-    { taskName: 'Eat Breakfast', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: true }
-    , { taskName: 'Learn Javascipt', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: false }
+    // { taskName: 'Eat Breakfast', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: true }
+    // , { taskName: 'Learn Javascipt', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: false }
 ];
 // Create todo class
 const Todo = (taskName, taskDate, taskPriority, taskDone) => {
@@ -67,9 +67,6 @@ inputTodo.addEventListener("submit", (e) => {
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     todoList.push(genarateTodo);
     console.log(todoList);
-    console.log(todoList[0].taskDate);
-    todoList[0].taskDone = true;
-    console.log(todoDate.valueAsNumber);
     clearDiv(".show-task-list");
     for (let i = 0; i < todoList.length; i++) {
         renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);

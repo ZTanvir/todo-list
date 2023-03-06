@@ -229,6 +229,7 @@ input[type="date"] {
 .add-task .add-task-btn {
   background-color: var(--accentDark);
   border: none;
+  padding: .25rem .5rem;
   color: var(--asideBg);
 }
 .add-task-btn:is(:hover, :focus) {
