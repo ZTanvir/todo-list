@@ -150,9 +150,16 @@ aside {
 }
 .add-project-field .add-project-input {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   padding-bottom: 10px;
   align-items: center;
+}
+.add-project .project-input-field{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 .add-project-field .add-project-input input[type="text"] {
   padding: 10px;
