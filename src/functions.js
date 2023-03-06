@@ -1,3 +1,4 @@
+import { todoList } from "./index.js";
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
@@ -6,7 +7,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
-    checkBox.setAttribute("id", taskUniqueId);
+    checkBox.setAttribute("data-checkboxindex",taskSerial);
 
     // checkbox label
     let label = document.createElement("label");
@@ -20,7 +21,11 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // When task is compelete 
     // add line through to the text
     if (taskComplete == true) {
+        checkBox.checked = true;
         paraTodoName.style.textDecoration = "line-through";
+    }else if(taskComplete == false){
+        checkBox.checked = false;
+        paraTodoName.style.textDecoration = "none";
     }
 
     // div task date
@@ -65,7 +70,25 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // insert all item to a single div
     div.appendChild(checkboxDiv);
     div.appendChild(otherDiv);
-    div.setAttribute("data-index", taskSerial);
+    div.setAttribute("data-divindex", taskSerial);
+
+    // done task when click on checkbox
+    checkBox.addEventListener("click",(e)=>{
+        let checkBoxIndex = Number(e.target.dataset.checkboxindex);
+        // checked if the checkbox is checked
+        let isCheckboxChecked = e.target.checked;
+        let checkboxName = e.target.parentNode.lastChild.lastChild;
+        if(isCheckboxChecked){
+            checkboxName.style.textDecoration = "line-through";
+            // update the taskdone of the todolist
+            todoList[checkBoxIndex].taskDone =true;
+        }else if (!isCheckboxChecked){
+            checkboxName.style.textDecoration = "none";
+            // update the taskdone of the todolist
+            todoList[checkBoxIndex].taskDone =false;
+        }
+        console.log(todoList);
+    })
 
     return div;
 }

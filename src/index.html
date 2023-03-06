@@ -42,15 +42,18 @@
                 <div class="add-project">
                     <div class="project-list"></div>
                     <div class="add-project-field hidden">
-                        <div class="add-project-input">
-                            <label for="input-project-name"><i class="fa-solid fa-bars fa-lg"></i></label>
-                            <input type="text" name="project-name" id="input-project-name"
-                                placeholder="Enter Project Name">
-                        </div>
-                        <div class="add-project-btn">
-                            <button class="btn-add">Add</button>
-                            <button class="btn-cancel">Cancel</button>
-                        </div>
+                        <form id="add-project" class="add-project-input">
+                            <div class="project-input-field">
+                                <label for="input-project-name">
+                                    <i class="fa-solid fa-bars fa-lg"></i>
+                                </label>
+                                <input type="text" name="project-name" id="input-project-name" placeholder="Enter Project Name" required>
+                            </div>
+                            <div class="add-project-btn">
+                                <button type="submit" class="btn-add">Add</button>
+                                <button class="btn-cancel">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="add-project-text">
                         <i class="fa-solid fa-plus"></i>
@@ -72,9 +75,6 @@
             </form>
             <div class="task-list">
                 <div class="show-task-list">
-                    <div>abc</div>
-                    <div>def</div>
-                    <div>igh</div>
                 </div>
             </div>
         </section>
