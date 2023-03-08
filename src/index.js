@@ -38,9 +38,15 @@ projectForm.addEventListener("submit", (e) => {
     console.log(divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
-    allProject[projectName] = [];
+    // check the project name contains space
+    if(projectName.includes(" ")){
+        //remove all spaces and make it a single project name
+        let divideProjectname = projectName.split(" ").join("");
+        allProject[divideProjectname] = [];
+    } else{
+        allProject[projectName] = [];
+    }
     console.log(allProject);
-    projectField.classList.toggle("hidden");
     // reset the form
     projectForm.reset();
     // all html element inside project
@@ -49,7 +55,8 @@ projectForm.addEventListener("submit", (e) => {
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
-            console.log("click project");
+            console.log("clicked project");
+            console.log(allProject);
         })
     })
     console.log(projectsEl);
