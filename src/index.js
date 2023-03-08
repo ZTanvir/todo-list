@@ -32,25 +32,33 @@ projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
+
+     // check the project name contains space
+     if(projectFieldEl.value.includes(" ")){
+        //remove all spaces and make it a single project name
+        let divideProjectname = projectFieldEl.value.split(" ").join("");
+        divEl.dataset.project = divideProjectname;
+    } else{
+        divEl.dataset.project = projectFieldEl.value;
+    }
+
     divEl.classList.add("projects");
-    divEl.dataset.project = projectFieldEl.value;
     projectListEl.appendChild(divEl);
     console.log(divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
-    // check the project name contains space
-    if(projectName.includes(" ")){
-        //remove all spaces and make it a single project name
-        let divideProjectname = projectName.split(" ").join("");
-        allProject[divideProjectname] = [];
-    } else{
-        allProject[projectName] = [];
-    }
+    allProject[projectName] = [];
+ 
     console.log(allProject);
+    projectField.classList.toggle("hidden");
+
     // reset the form
     projectForm.reset();
-    // all html element inside project
+
+    // select all html element inside project
     projectsEl = document.querySelectorAll(".projects");
+    
+    // add active class when click on a project 
     projectsEl.forEach((project)=>{
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
@@ -84,6 +92,13 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
+    // check which project is active
+    console.log("all projects-",projectsEl);
+    projectsEl.forEach((project)=>{
+        if(project.classList.contains("project-active")){
+            console.log(project);
+        };
+    })
     // genarateTodo based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     todoList.push(genarateTodo);
