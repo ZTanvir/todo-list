@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
-import { genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
+import { removeActiveClass,genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
 
 const projectForm = document.querySelector("#add-project");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -43,14 +43,15 @@ projectForm.addEventListener("submit", (e) => {
     projectField.classList.toggle("hidden");
     // reset the form
     projectForm.reset();
-    projectsEl = document.querySelectorAll('.projects');
+    // all html element inside project
+    projectsEl = document.querySelectorAll(".projects");
     projectsEl.forEach((project)=>{
         project.addEventListener("click",(e)=>{
-            project.classList.toggle("project-active");
+            removeActiveClass(projectsEl);
+            project.classList.add("project-active");
             console.log("click project");
         })
     })
-   
     console.log(projectsEl);
 })
 

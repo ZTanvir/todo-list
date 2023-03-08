@@ -105,4 +105,11 @@ const renderTodoList = (domElement, taskName, taskDate, taskPriority, taskComple
     taskList.appendChild(genarateTodoHtml(taskName, taskDate, taskPriority, taskComplete, taskSerial));
 
 }
-export { genarateTodoHtml, clearDiv, renderTodoList };
+// remove class .project-active from html element
+function removeActiveClass( htmlNodes ){
+    htmlNodes.forEach((node)=>{
+        node.classList.remove("project-active");
+    })
+}
+
+export { removeActiveClass, genarateTodoHtml, clearDiv, renderTodoList };
