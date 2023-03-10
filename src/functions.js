@@ -1,4 +1,4 @@
-import { todoList } from "./index.js";
+import { activeProject, allProject } from "./index.js";
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
@@ -81,13 +81,20 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         if(isCheckboxChecked){
             checkboxName.style.textDecoration = "line-through";
             // update the taskdone of the todolist
-            todoList[checkBoxIndex].taskDone =true;
+            if(activeProject != null){
+                let projectListArray = allProject[activeProject];
+                projectListArray[checkBoxIndex].taskDone = true;
+            }
+            // todoList[checkBoxIndex].taskDone =true;
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
-            todoList[checkBoxIndex].taskDone =false;
+            if(activeProject != null){
+                let projectListArray = allProject[activeProject];
+                projectListArray[checkBoxIndex].taskDone = true;
+            }
         }
-        console.log(todoList);
+        // console.log(allProject);
     })
 
     return div;

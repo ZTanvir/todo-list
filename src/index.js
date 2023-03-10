@@ -22,6 +22,8 @@ const inputTodo = document.querySelector("#get-todo");
 
 // All projects
 let allProject = {};
+// Project which one is active now
+let activeProject = null;
 
 // Show project input field when click on add project
 addProjectEl.addEventListener("click", () => {
@@ -92,7 +94,6 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    let activeProject = null;
     // check which project is active
     console.log("all projects-",projectsEl);
     projectsEl.forEach((project)=>{
@@ -107,11 +108,11 @@ inputTodo.addEventListener("submit", (e) => {
     if(activeProject != null){
         let projectListArray = allProject[activeProject];
         projectListArray.push(genarateTodo);
-        // reder array item to the screen
+        // render array item to the screen
         clearDiv(".show-task-list");
         for (let i = 0; i < projectListArray.length; i++) {
             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
-    }
+        }
     }  
     // Reset todo input field
     inputTodo.reset();
@@ -137,4 +138,4 @@ if (todoList.length != 0) {
 
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 2));
 
-export {todoList};
+export {allProject,activeProject};
