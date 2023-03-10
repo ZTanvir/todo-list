@@ -92,7 +92,7 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    let activeProject = "";
+    let activeProject = null;
     // check which project is active
     console.log("all projects-",projectsEl);
     projectsEl.forEach((project)=>{
@@ -104,12 +104,15 @@ inputTodo.addEventListener("submit", (e) => {
     console.log(activeProject);
     // genarateTodo based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
-    todoList.push(genarateTodo);
-    console.log(todoList);
-    clearDiv(".show-task-list");
-    for (let i = 0; i < todoList.length; i++) {
-        renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);
+    if(activeProject != null){
+        let projectListArray = allProject[activeProject];
+        projectListArray.push(genarateTodo);
+        // reder array item to the screen
+        clearDiv(".show-task-list");
+        for (let i = 0; i < projectListArray.length; i++) {
+            renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
     }
+    }  
     // Reset todo input field
     inputTodo.reset();
 })
