@@ -118,5 +118,15 @@ function removeActiveClass( htmlNodes ){
         node.classList.remove("project-active");
     })
 }
+// Check which project is active
+function findActiveProject( projectListNodes ){
+    let activeProject = null;
+    projectListNodes.forEach((project)=>{
+        if(project.classList.contains("project-active")){
+            activeProject = project.dataset.project;
+        };
+    })
+    return activeProject;
+}
 
-export { removeActiveClass, genarateTodoHtml, clearDiv, renderTodoList };
+export { removeActiveClass,findActiveProject, genarateTodoHtml, clearDiv, renderTodoList };

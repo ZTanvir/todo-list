@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
-import { removeActiveClass,genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
+import { removeActiveClass,findActiveProject,genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
 
 const projectForm = document.querySelector("#add-project");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -94,14 +94,10 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    // check which project is active
     console.log("all projects-",projectsEl);
-    projectsEl.forEach((project)=>{
-        if(project.classList.contains("project-active")){
-            console.log(project);
-            activeProject = project.dataset.project;
-        };
-    })
+    
+    // check which project is active
+    activeProject = findActiveProject(projectsEl);
     console.log(activeProject);
     // genarateTodo based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
