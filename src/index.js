@@ -14,6 +14,7 @@ const projectFieldEl = document.querySelector("#input-project-name");
 const projectListEl = document.querySelector(".project-list");
 const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
+let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
 
 // btn
@@ -66,22 +67,33 @@ projectForm.addEventListener("submit", (e) => {
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
-            console.log("clicked project");
+            // change project name in the list
+            projectBoardEl.textContent = "dummy name";
+            activeProject = findActiveProject(projectsEl);
+            console.log("clicked project",activeProject);
+            // when the project already contain todo list
+            // Render it to the screen
+            if(activeProject != null){
+                console.log("render project-");
+                console.log("");
+                let projectListArray = allProject[activeProject];
+                // render array item to the screen
+                clearDiv(".show-task-list");
+                for (let i = 0; i < projectListArray.length; i++) {
+                    renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                }
+            }
         })
     })
+    // render todolist if th
     console.log(projectsEl);
 })
-
 
 // Hide a project input field when click on cancel btn
 cancelBtnEl.addEventListener("click", () => {
     projectField.classList.toggle("hidden");
 })
 
-const todoList = [
-    // { taskName: 'Eat Breakfast', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: true }
-    // , { taskName: 'Learn Javascipt', taskDate: '2023-03-02', taskPriority: 'normal', taskDone: false }
-];
 // Create todo class
 const Todo = (taskName, taskDate, taskPriority, taskDone) => {
     return { taskName, taskDate, taskPriority, taskDone };
@@ -99,7 +111,7 @@ inputTodo.addEventListener("submit", (e) => {
     // check which project is active
     activeProject = findActiveProject(projectsEl);
     console.log(activeProject);
-    // genarateTodo based on user input
+    // genarateTodo object based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     if(activeProject != null){
         let projectListArray = allProject[activeProject];
@@ -110,17 +122,10 @@ inputTodo.addEventListener("submit", (e) => {
             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
         }
     }  
+    console.log(allProject);
     // Reset todo input field
     inputTodo.reset();
 })
-// when we already have todo list before adding new todo list
-if (todoList.length != 0) {
-    clearDiv(".show-task-list");
-    for (let i = 0; i < todoList.length; i++) {
-        renderTodoList(".show-task-list", todoList[i].taskName, todoList[i].taskDate, todoList[i].taskPriority, todoList[i].taskDone, i);
-    }
-}
-// .show-task-list
 
 // const dates = [
 //     new Date(1995, 6, 2),
