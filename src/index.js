@@ -15,6 +15,7 @@ const projectListEl = document.querySelector(".project-list");
 const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
 let projectsEl = document.querySelectorAll('.projects');
+
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
 const inputTodo = document.querySelector("#get-todo");
@@ -57,14 +58,13 @@ projectForm.addEventListener("submit", (e) => {
 
     // select all html element inside project
     projectsEl = document.querySelectorAll(".projects");
-    
+
     // add active class when click on a project 
     projectsEl.forEach((project)=>{
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
             console.log("clicked project");
-            console.log(allProject);
         })
     })
     console.log(projectsEl);
@@ -92,13 +92,16 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
+    let activeProject = "";
     // check which project is active
     console.log("all projects-",projectsEl);
     projectsEl.forEach((project)=>{
         if(project.classList.contains("project-active")){
             console.log(project);
+            activeProject = project.dataset.project;
         };
     })
+    console.log(activeProject);
     // genarateTodo based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     todoList.push(genarateTodo);

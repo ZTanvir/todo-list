@@ -222,6 +222,7 @@ aside {
 }
 .project-active{
   background-color: var(--accentDark);
+  color: white;
 }
 /* All to do list section end */
 /* Todo add font and resize font ass section */
