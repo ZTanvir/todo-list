@@ -67,8 +67,10 @@ projectForm.addEventListener("submit", (e) => {
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
+            
             // change project name in the list
-            projectBoardEl.textContent = "dummy name";
+            let projectNameText = e.target.textContent;
+            projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
             console.log("clicked project",activeProject);
             // when the project already contain todo list
