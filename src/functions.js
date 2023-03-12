@@ -1,4 +1,4 @@
-import { todoList } from "./index.js";
+import { activeProject, allProject } from "./index.js";
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
@@ -81,13 +81,20 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         if(isCheckboxChecked){
             checkboxName.style.textDecoration = "line-through";
             // update the taskdone of the todolist
-            todoList[checkBoxIndex].taskDone =true;
+            if(activeProject != null){
+                let projectListArray = allProject[activeProject];
+                projectListArray[checkBoxIndex].taskDone = true;
+            }
+            // todoList[checkBoxIndex].taskDone =true;
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
-            todoList[checkBoxIndex].taskDone =false;
+            if(activeProject != null){
+                let projectListArray = allProject[activeProject];
+                projectListArray[checkBoxIndex].taskDone = true;
+            }
         }
-        console.log(todoList);
+        // console.log(allProject);
     })
 
     return div;
@@ -105,4 +112,21 @@ const renderTodoList = (domElement, taskName, taskDate, taskPriority, taskComple
     taskList.appendChild(genarateTodoHtml(taskName, taskDate, taskPriority, taskComplete, taskSerial));
 
 }
-export { genarateTodoHtml, clearDiv, renderTodoList };
+// remove class .project-active from html element
+function removeActiveClass( htmlNodes ){
+    htmlNodes.forEach((node)=>{
+        node.classList.remove("project-active");
+    })
+}
+// Check which project is active
+function findActiveProject( projectListNodes ){
+    let activeProject = null;
+    projectListNodes.forEach((project)=>{
+        if(project.classList.contains("project-active")){
+            activeProject = project.dataset.project;
+        };
+    })
+    return activeProject;
+}
+
+export { removeActiveClass,findActiveProject, genarateTodoHtml, clearDiv, renderTodoList };
