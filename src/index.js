@@ -16,7 +16,7 @@ const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
 let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
-
+let todoTaskListEl = document.querySelector(".show-task-list");
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
 const inputTodo = document.querySelector("#get-todo");
@@ -34,6 +34,7 @@ addProjectEl.addEventListener("click", () => {
 // Add a project to the project section
 projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    // Make the input todo form visiable
     inputTodo.style.display = "flex";
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
@@ -135,13 +136,23 @@ inputTodo.addEventListener("submit", (e) => {
 let allTask = document.querySelectorAll(".task-duration");
 allTask.forEach((task)=>{
     task.addEventListener("click",(e)=>{
-        console.log(task);
+        // Check total todo projects available 
+        let projectSize = Object.keys(allProject).length;
         let taskName = task.dataset.tasktype;
         if(taskName === "all"){
             projectBoardEl.textContent = "All Tasks";
             clearDiv(".show-task-list");
-            let projectSize = Object.keys(allProject).length;
             if(projectSize == 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize != 0){
+                clearDiv(".show-task-list");
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    console.log("projectListArray",projectListArray);
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                    }
+                }
                 
             }
         }else if(taskName === "today"){
