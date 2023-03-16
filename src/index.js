@@ -67,12 +67,13 @@ projectForm.addEventListener("submit", (e) => {
         project.addEventListener("click",(e)=>{
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
-            
+
             // change project name in the list
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
             console.log("clicked project",activeProject);
+
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
@@ -128,6 +129,28 @@ inputTodo.addEventListener("submit", (e) => {
     // Reset todo input field
     inputTodo.reset();
 })
+
+// Change task board based on task durations
+let allTask = document.querySelectorAll(".task-duration");
+allTask.forEach((task)=>{
+    task.addEventListener("click",(e)=>{
+        console.log(task);
+        let taskName = task.dataset.tasktype;
+        if(taskName === "all"){
+            projectBoardEl.textContent = "All Tasks";
+
+        }else if(taskName === "today"){
+            projectBoardEl.textContent = "Today";
+
+        }else if(taskName === "weekly"){
+            projectBoardEl.textContent = "Next 7 Days";
+
+        }else if(taskName === "important"){
+            projectBoardEl.textContent = "Important";
+        }
+    })
+})
+
 
 // const dates = [
 //     new Date(1995, 6, 2),
