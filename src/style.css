@@ -230,7 +230,7 @@ aside {
   display: none;
 }
 .todo-list-section .add-task {
-  display: flex;
+  display: none;
   justify-content: space-between;
 }
 .add-task input[type="text"],

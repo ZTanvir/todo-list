@@ -34,6 +34,7 @@ addProjectEl.addEventListener("click", () => {
 // Add a project to the project section
 projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    inputTodo.style.display = "flex";
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
 
@@ -138,7 +139,11 @@ allTask.forEach((task)=>{
         let taskName = task.dataset.tasktype;
         if(taskName === "all"){
             projectBoardEl.textContent = "All Tasks";
-
+            clearDiv(".show-task-list");
+            let projectSize = Object.keys(allProject).length;
+            if(projectSize == 0){
+                
+            }
         }else if(taskName === "today"){
             projectBoardEl.textContent = "Today";
 
