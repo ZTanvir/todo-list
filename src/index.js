@@ -17,6 +17,8 @@ const projectField = document.querySelector(".add-project-field");
 let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
 let todoTaskListEl = document.querySelector(".show-task-list");
+let allTask = document.querySelectorAll(".task-duration");
+
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
 const inputTodo = document.querySelector("#get-todo");
@@ -67,6 +69,8 @@ projectForm.addEventListener("submit", (e) => {
     // add active class when click on a project 
     projectsEl.forEach((project)=>{
         project.addEventListener("click",(e)=>{
+            // make the input todo visiable
+            inputTodo.style.display = "flex";
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
 
@@ -133,23 +137,25 @@ inputTodo.addEventListener("submit", (e) => {
 })
 
 // Change task board based on task durations
-let allTask = document.querySelectorAll(".task-duration");
 allTask.forEach((task)=>{
     task.addEventListener("click",(e)=>{
+        // hide the input todo form
+        inputTodo.style.display = "none";
         // Check total todo projects available 
         let projectSize = Object.keys(allProject).length;
         let taskName = task.dataset.tasktype;
         if(taskName === "all"){
             projectBoardEl.textContent = "All Tasks";
             clearDiv(".show-task-list");
-            if(projectSize == 0){
+            if(projectSize === 0){
                 todoTaskListEl.textContent = "Yay! No Tasks!";
-            }else if(projectSize != 0){
+            }else if(projectSize !== 0){
                 clearDiv(".show-task-list");
                 for(let item in allProject){
                     let projectListArray = allProject[item];
                     console.log("projectListArray",projectListArray);
                     for (let i = 0; i < projectListArray.length; i++) {
+                        console.log(typeof (projectListArray[i].taskDate));
                         renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                     }
                 }
