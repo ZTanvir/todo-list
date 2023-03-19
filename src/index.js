@@ -16,6 +16,8 @@ const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
 let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
+let todoTaskListEl = document.querySelector(".show-task-list");
+let allTask = document.querySelectorAll(".task-duration");
 
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
@@ -34,6 +36,8 @@ addProjectEl.addEventListener("click", () => {
 // Add a project to the project section
 projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    // Make the input todo form visiable
+    inputTodo.style.display = "flex";
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
 
@@ -65,14 +69,17 @@ projectForm.addEventListener("submit", (e) => {
     // add active class when click on a project 
     projectsEl.forEach((project)=>{
         project.addEventListener("click",(e)=>{
+            // make the input todo visiable
+            inputTodo.style.display = "flex";
             removeActiveClass(projectsEl);
             project.classList.add("project-active");
-            
+
             // change project name in the list
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
             console.log("clicked project",activeProject);
+
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
@@ -129,13 +136,12 @@ inputTodo.addEventListener("submit", (e) => {
     inputTodo.reset();
 })
 
-const dates = [
-    new Date(1995, 6, 2),
-    new Date(1987, 1, 11),
-    new Date(1989, 6, 10),
-]
-console.log(dates.sort(compareAsc))
-
+// const dates = [
+//     new Date(1995, 6, 2),
+//     new Date(1987, 1, 11),
+//     new Date(1989, 6, 10),
+// ]
+// console.log(dates.sort(compareAsc))
 
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 0));
 // taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
