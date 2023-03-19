@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import "./style.css";
 import 'normalize.css';
-import { format, compareAsc } from 'date-fns'
+import { differenceInDays} from 'date-fns'
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
@@ -141,7 +141,12 @@ allTask.forEach((task)=>{
     task.addEventListener("click",(e)=>{
         // hide the input todo form
         inputTodo.style.display = "none";
-        // Check total todo projects available 
+        // date
+        let todaysDate = new Date();
+        const [year,month,day] = [todaysDate.getFullYear(),todaysDate.getMonth()+1,todaysDate.getDate()];
+        // to formate 2022-03-19
+        let formateToday = `${year}-0${month}-${day}`;
+        // Check total todo projects available
         let projectSize = Object.keys(allProject).length;
         let taskName = task.dataset.tasktype;
         if(taskName === "all"){
@@ -160,18 +165,15 @@ allTask.forEach((task)=>{
                     }
                 }   
             }
-        }else if(taskName === "today"){
+        }
+        else if(taskName === "today"){
             projectBoardEl.textContent = "Today";
             clearDiv(".show-task-list");
             if(projectSize === 0){
                 todoTaskListEl.textContent = "Yay! No Tasks!";
             }else if(projectSize !== 0){
                 clearDiv(".show-task-list");
-                let todaysDate = new Date();
-                const [year,month,day] = [todaysDate.getFullYear(),todaysDate.getMonth()+1,todaysDate.getDate()];
-                // to formate 2022-03-19
-                let formateToday = `${year}-0${month}-${day}`;
-                
+
                 // render task when the task date match with today
                 for(let item in allProject){
                     let projectListArray = allProject[item];
@@ -187,6 +189,31 @@ allTask.forEach((task)=>{
 
         }else if(taskName === "weekly"){
             projectBoardEl.textContent = "Next 7 Days";
+
+            clearDiv(".show-task-list");
+            if(projectSize === 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize !== 0){
+                clearDiv(".show-task-list");
+
+                // render task when the difference between task date is 7
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        let todoDate = new Date(projectListArray[i].taskDate);
+                        let todayDateFormate = new Date(formateToday);
+                           
+                        let intervalFromToday = differenceInDays(
+                            new Date(todoDate),
+                            new Date(todayDateFormate)
+                        )
+                        console.log("intervalFromToday",intervalFromToday);
+                        if(intervalFromToday >= 0 && intervalFromToday <= 7){
+                            renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                        }
+                    }
+                }   
+            }
 
         }else if(taskName === "important"){
             projectBoardEl.textContent = "Important";
