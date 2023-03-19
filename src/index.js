@@ -158,11 +158,32 @@ allTask.forEach((task)=>{
                         console.log(typeof (projectListArray[i].taskDate));
                         renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                     }
-                }
-                
+                }   
             }
         }else if(taskName === "today"){
             projectBoardEl.textContent = "Today";
+            clearDiv(".show-task-list");
+            if(projectSize === 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize !== 0){
+                clearDiv(".show-task-list");
+                let todaysDate = new Date();
+                const [year,month,day] = [todaysDate.getFullYear(),todaysDate.getMonth()+1,todaysDate.getDate()];
+                // to formate 2022-03-19
+                let formateToday = `${year}-0${month}-${day}`;
+                
+                // render task when the task date match with today
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        let todoDate = new Date(projectListArray[i].taskDate).getTime();
+                        let todayDateFormate = new Date(formateToday).getTime();
+                        if(todayDateFormate == todoDate){
+                            renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                        }
+                    }
+                }   
+            }
 
         }else if(taskName === "weekly"){
             projectBoardEl.textContent = "Next 7 Days";
