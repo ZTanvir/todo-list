@@ -52,12 +52,12 @@ projectForm.addEventListener("submit", (e) => {
 
     divEl.classList.add("projects");
     projectListEl.appendChild(divEl);
-    console.log(divEl.dataset.project);
+    // console.log(divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
  
-    console.log(allProject);
+    // console.log(allProject);
     projectField.classList.toggle("hidden");
 
     // reset the form
@@ -78,13 +78,13 @@ projectForm.addEventListener("submit", (e) => {
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
-            console.log("clicked project",activeProject);
+            // console.log("clicked project",activeProject);
 
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
-                console.log("render project-");
-                console.log("");
+                // console.log("render project-");
+                // console.log("");
                 let projectListArray = allProject[activeProject];
                 // render array item to the screen
                 clearDiv(".show-task-list");
@@ -148,7 +148,7 @@ allTask.forEach((task)=>{
         let formateToday = `${year}-0${month}-${day}`;
         // Check total todo projects available
         let projectSize = Object.keys(allProject).length;
-        let taskName = task.dataset.tasktype;
+        let taskName = e.target.dataset.tasktype;
         if(taskName === "all"){
             projectBoardEl.textContent = "All Tasks";
             clearDiv(".show-task-list");
@@ -156,17 +156,18 @@ allTask.forEach((task)=>{
                 todoTaskListEl.textContent = "Yay! No Tasks!";
             }else if(projectSize !== 0){
                 clearDiv(".show-task-list");
+                console.log(allProject); 
                 for(let item in allProject){
                     let projectListArray = allProject[item];
                     console.log("projectListArray",projectListArray);
+                    activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
                         console.log(typeof (projectListArray[i].taskDate));
                         renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                     }
                 }   
             }
-        }
-        else if(taskName === "today"){
+        }else if(taskName === "today"){
             projectBoardEl.textContent = "Today";
             clearDiv(".show-task-list");
             if(projectSize === 0){
@@ -177,6 +178,7 @@ allTask.forEach((task)=>{
                 // render task when the task date match with today
                 for(let item in allProject){
                     let projectListArray = allProject[item];
+                    activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
                         let todoDate = new Date(projectListArray[i].taskDate).getTime();
                         let todayDateFormate = new Date(formateToday).getTime();
@@ -199,6 +201,7 @@ allTask.forEach((task)=>{
                 // render task when the difference between task date is 7
                 for(let item in allProject){
                     let projectListArray = allProject[item];
+                    activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
                         let todoDate = new Date(projectListArray[i].taskDate);
                         let todayDateFormate = new Date(formateToday);
@@ -217,21 +220,9 @@ allTask.forEach((task)=>{
 
         }else if(taskName === "important"){
             projectBoardEl.textContent = "Important";
+            clearDiv(".show-task-list");
         }
     })
 })
-
-
-// const dates = [
-//     new Date(1995, 6, 2),
-//     new Date(1987, 1, 11),
-//     new Date(1989, 6, 10),
-// ]
-// console.log(dates.sort(compareAsc))
-
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 0));
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
-
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 2));
 
 export {allProject,activeProject};
