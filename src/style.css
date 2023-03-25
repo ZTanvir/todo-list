@@ -255,6 +255,8 @@ input[type="date"] {
 .show-task-list {
   display: grid;
   gap: 10px;
+  padding-top:0.5rem;
+  padding-bottom: 0.5rem;
 }
 .show-task-list .todo-list {
   display: flex;
