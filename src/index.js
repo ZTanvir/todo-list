@@ -52,12 +52,10 @@ projectForm.addEventListener("submit", (e) => {
 
     divEl.classList.add("projects");
     projectListEl.appendChild(divEl);
-    // (divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
  
-    // (allProject);
     projectField.classList.toggle("hidden");
 
     // reset the form
@@ -78,13 +76,10 @@ projectForm.addEventListener("submit", (e) => {
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
-            // ("clicked project",activeProject);
 
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
-                // ("render project-");
-                // ("");
                 let projectListArray = allProject[activeProject];
                 // render array item to the screen
                 clearDiv(".show-task-list");
@@ -95,7 +90,6 @@ projectForm.addEventListener("submit", (e) => {
         })
     })
     // render todolist if th
-    (projectsEl);
 })
 
 // Hide a project input field when click on cancel btn
@@ -115,11 +109,8 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    ("all projects-",projectsEl);
-    
     // check which project is active
     activeProject = findActiveProject(projectsEl);
-    (activeProject);
     // genarateTodo object based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     if(activeProject != null){
@@ -131,7 +122,6 @@ inputTodo.addEventListener("submit", (e) => {
             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
         }
     }  
-    (allProject);
     // Reset todo input field
     inputTodo.reset();
 })
@@ -156,13 +146,10 @@ allTask.forEach((task)=>{
                 todoTaskListEl.textContent = "Yay! No Tasks!";
             }else if(projectSize !== 0){
                 clearDiv(".show-task-list");
-                (allProject); 
                 for(let item in allProject){
                     let projectListArray = allProject[item];
-                    ("projectListArray",projectListArray);
                     activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
-                        (typeof (projectListArray[i].taskDate));
                         renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                     }
                 }   
@@ -210,7 +197,6 @@ allTask.forEach((task)=>{
                             new Date(todoDate),
                             new Date(todayDateFormate)
                         )
-                        ("intervalFromToday",intervalFromToday);
                         if(intervalFromToday >= 0 && intervalFromToday <= 7){
                             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                         }
