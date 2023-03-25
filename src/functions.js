@@ -38,15 +38,28 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     let btnTodoPriority = document.createElement("button");
     btnTodoPriority.textContent = taskPriority;
 
-    // delete 
+    // delete
+    let faDelDiv = document.createElement("div"); 
     let faDelete = document.createElement("i");
     faDelete.classList.add("fa-solid", "fa-delete-left");
     faDelete.setAttribute("title", "Delete Todo");
+    faDelete.classList.add("delete-todo");
+    faDelDiv.appendChild(faDelete);
+    faDelDiv.addEventListener("click",(e)=>{
+        console.log("delete");
+    })
+
 
     // edit 
+    let faEditDiv = document.createElement("div"); 
     let faEdit = document.createElement("i");
     faEdit.classList.add("fa-solid", "fa-pen-to-square");
     faEdit.setAttribute("title", "Edit Todo");
+    faEdit.classList.add("edit-todo");
+    faEditDiv.appendChild(faEdit);
+    faEditDiv.addEventListener("click",(e)=>{
+        console.log("edit");
+    })
 
     // contain checkbox and id
     let checkboxDiv = document.createElement("div");
@@ -59,8 +72,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     otherDiv.classList.add("todo-right-side");
     otherDiv.appendChild(divTodoDate);
     otherDiv.appendChild(btnTodoPriority);
-    otherDiv.appendChild(faDelete);
-    otherDiv.appendChild(faEdit);
+    otherDiv.appendChild(faDelDiv);
+    otherDiv.appendChild(faEditDiv);
 
     // div that contain all todo element
     let div = document.createElement("div");
