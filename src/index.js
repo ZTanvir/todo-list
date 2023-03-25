@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import "./style.css";
 import 'normalize.css';
-import { format, compareAsc } from 'date-fns'
+import { differenceInDays} from 'date-fns'
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
@@ -52,12 +52,10 @@ projectForm.addEventListener("submit", (e) => {
 
     divEl.classList.add("projects");
     projectListEl.appendChild(divEl);
-    console.log(divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
  
-    console.log(allProject);
     projectField.classList.toggle("hidden");
 
     // reset the form
@@ -78,13 +76,10 @@ projectForm.addEventListener("submit", (e) => {
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
-            console.log("clicked project",activeProject);
 
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
-                console.log("render project-");
-                console.log("");
                 let projectListArray = allProject[activeProject];
                 // render array item to the screen
                 clearDiv(".show-task-list");
@@ -95,7 +90,6 @@ projectForm.addEventListener("submit", (e) => {
         })
     })
     // render todolist if th
-    console.log(projectsEl);
 })
 
 // Hide a project input field when click on cancel btn
@@ -115,11 +109,8 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    console.log("all projects-",projectsEl);
-    
     // check which project is active
     activeProject = findActiveProject(projectsEl);
-    console.log(activeProject);
     // genarateTodo object based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     if(activeProject != null){
@@ -131,21 +122,93 @@ inputTodo.addEventListener("submit", (e) => {
             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
         }
     }  
-    console.log(allProject);
     // Reset todo input field
     inputTodo.reset();
 })
 
-// const dates = [
-//     new Date(1995, 6, 2),
-//     new Date(1987, 1, 11),
-//     new Date(1989, 6, 10),
-// ]
-// console.log(dates.sort(compareAsc))
+// Change task board based on task durations
+allTask.forEach((task)=>{
+    task.addEventListener("click",(e)=>{
+        // hide the input todo form
+        inputTodo.style.display = "none";
+        // date
+        let todaysDate = new Date();
+        const [year,month,day] = [todaysDate.getFullYear(),todaysDate.getMonth()+1,todaysDate.getDate()];
+        // to formate 2022-03-19
+        let formateToday = `${year}-0${month}-${day}`;
+        // Check total todo projects available
+        let projectSize = Object.keys(allProject).length;
+        let taskName = e.target.dataset.tasktype;
+        if(taskName === "all"){
+            projectBoardEl.textContent = "All Tasks";
+            clearDiv(".show-task-list");
+            if(projectSize === 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize !== 0){
+                clearDiv(".show-task-list");
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    activeProject = item;
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                    }
+                }   
+            }
+        }else if(taskName === "today"){
+            projectBoardEl.textContent = "Today";
+            clearDiv(".show-task-list");
+            if(projectSize === 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize !== 0){
+                clearDiv(".show-task-list");
 
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 0));
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", true, 1));
+                // render task when the task date match with today
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    activeProject = item;
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        let todoDate = new Date(projectListArray[i].taskDate).getTime();
+                        let todayDateFormate = new Date(formateToday).getTime();
+                        if(todayDateFormate == todoDate){
+                            renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                        }
+                    }
+                }   
+            }
 
-// taskList.appendChild(genarateTodoHtml("abcd", "10 feb", "urgent", false, 2));
+        }else if(taskName === "weekly"){
+            projectBoardEl.textContent = "Next 7 Days";
+
+            clearDiv(".show-task-list");
+            if(projectSize === 0){
+                todoTaskListEl.textContent = "Yay! No Tasks!";
+            }else if(projectSize !== 0){
+                clearDiv(".show-task-list");
+
+                // render task when the difference between task date is 7
+                for(let item in allProject){
+                    let projectListArray = allProject[item];
+                    activeProject = item;
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        let todoDate = new Date(projectListArray[i].taskDate);
+                        let todayDateFormate = new Date(formateToday);
+                           
+                        let intervalFromToday = differenceInDays(
+                            new Date(todoDate),
+                            new Date(todayDateFormate)
+                        )
+                        if(intervalFromToday >= 0 && intervalFromToday <= 7){
+                            renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                        }
+                    }
+                }   
+            }
+
+        }else if(taskName === "important"){
+            projectBoardEl.textContent = "Important";
+            clearDiv(".show-task-list");
+        }
+    })
+})
 
 export {allProject,activeProject};

@@ -8,6 +8,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
     checkBox.setAttribute("data-checkboxindex",taskSerial);
+    checkBox.setAttribute("data-checkboxproject",activeProject);
+
 
     // checkbox label
     let label = document.createElement("label");
@@ -75,28 +77,23 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     // done task when click on checkbox
     checkBox.addEventListener("click",(e)=>{
         let checkBoxIndex = Number(e.target.dataset.checkboxindex);
+        let checkboxProject = e.target.dataset.checkboxproject;
         // checked if the checkbox is checked
         let isCheckboxChecked = e.target.checked;
         let checkboxName = e.target.parentNode.lastChild.lastChild;
         if(isCheckboxChecked){
             checkboxName.style.textDecoration = "line-through";
             // update the taskdone of the todolist
-            if(activeProject != null){
-                let projectListArray = allProject[activeProject];
-                projectListArray[checkBoxIndex].taskDone = true;
-            }
+            let projectListArray = allProject[checkboxProject];
+            projectListArray[checkBoxIndex].taskDone = true;
             // todoList[checkBoxIndex].taskDone =true;
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
-            if(activeProject != null){
-                let projectListArray = allProject[activeProject];
-                projectListArray[checkBoxIndex].taskDone = true;
-            }
+            let projectListArray = allProject[checkboxProject];
+            projectListArray[checkBoxIndex].taskDone = false;
         }
-        // console.log(allProject);
     })
-
     return div;
 }
 // Remove nodes from a parent node
