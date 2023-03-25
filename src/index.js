@@ -52,12 +52,12 @@ projectForm.addEventListener("submit", (e) => {
 
     divEl.classList.add("projects");
     projectListEl.appendChild(divEl);
-    // console.log(divEl.dataset.project);
+    // (divEl.dataset.project);
     // Add folder to project
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
  
-    // console.log(allProject);
+    // (allProject);
     projectField.classList.toggle("hidden");
 
     // reset the form
@@ -78,13 +78,13 @@ projectForm.addEventListener("submit", (e) => {
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
-            // console.log("clicked project",activeProject);
+            // ("clicked project",activeProject);
 
             // when the project already contain todo list
             // Render it to the screen
             if(activeProject != null){
-                // console.log("render project-");
-                // console.log("");
+                // ("render project-");
+                // ("");
                 let projectListArray = allProject[activeProject];
                 // render array item to the screen
                 clearDiv(".show-task-list");
@@ -95,7 +95,7 @@ projectForm.addEventListener("submit", (e) => {
         })
     })
     // render todolist if th
-    console.log(projectsEl);
+    (projectsEl);
 })
 
 // Hide a project input field when click on cancel btn
@@ -115,11 +115,11 @@ inputTodo.addEventListener("submit", (e) => {
     const todoDate = document.querySelector("#pick-date");
     const todoPriority = document.querySelector("#priority");
 
-    console.log("all projects-",projectsEl);
+    ("all projects-",projectsEl);
     
     // check which project is active
     activeProject = findActiveProject(projectsEl);
-    console.log(activeProject);
+    (activeProject);
     // genarateTodo object based on user input
     const genarateTodo = Todo(todoName.value, todoDate.value, todoPriority.value, false);
     if(activeProject != null){
@@ -131,7 +131,7 @@ inputTodo.addEventListener("submit", (e) => {
             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
         }
     }  
-    console.log(allProject);
+    (allProject);
     // Reset todo input field
     inputTodo.reset();
 })
@@ -156,13 +156,13 @@ allTask.forEach((task)=>{
                 todoTaskListEl.textContent = "Yay! No Tasks!";
             }else if(projectSize !== 0){
                 clearDiv(".show-task-list");
-                console.log(allProject); 
+                (allProject); 
                 for(let item in allProject){
                     let projectListArray = allProject[item];
-                    console.log("projectListArray",projectListArray);
+                    ("projectListArray",projectListArray);
                     activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
-                        console.log(typeof (projectListArray[i].taskDate));
+                        (typeof (projectListArray[i].taskDate));
                         renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                     }
                 }   
@@ -210,7 +210,7 @@ allTask.forEach((task)=>{
                             new Date(todoDate),
                             new Date(todayDateFormate)
                         )
-                        console.log("intervalFromToday",intervalFromToday);
+                        ("intervalFromToday",intervalFromToday);
                         if(intervalFromToday >= 0 && intervalFromToday <= 7){
                             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                         }

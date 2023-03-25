@@ -78,7 +78,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     checkBox.addEventListener("click",(e)=>{
         let checkBoxIndex = Number(e.target.dataset.checkboxindex);
         let checkboxProject = e.target.dataset.checkboxproject;
-        console.log("target",e.target);
+        ("target",e.target);
         // checked if the checkbox is checked
         let isCheckboxChecked = e.target.checked;
         let checkboxName = e.target.parentNode.lastChild.lastChild;
@@ -86,19 +86,19 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             checkboxName.style.textDecoration = "line-through";
             // update the taskdone of the todolist
             let projectListArray = allProject[checkboxProject];
-            console.log("checkBoxIndexchecked",allProject);
-            console.log("project arr",projectListArray[checkBoxIndex]);
+            ("checkBoxIndexchecked",allProject);
+            ("project arr",projectListArray[checkBoxIndex]);
             projectListArray[checkBoxIndex].taskDone = true;
-            console.log(allProject);
+            (allProject);
             // todoList[checkBoxIndex].taskDone =true;
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
             let projectListArray = allProject[checkboxProject];
-            console.log("checkBoxIndexnone",allProject);
-            console.log("project arr",projectListArray[checkBoxIndex]);
+            ("checkBoxIndexnone",allProject);
+            ("project arr",projectListArray[checkBoxIndex]);
             projectListArray[checkBoxIndex].taskDone = false;
-            console.log(allProject);
+            (allProject);
 
         }
     })
