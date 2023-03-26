@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/images/Eo_circle_green_checkmark.svg" type="image/x-icon">
     <title>To-do</title>
 <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
 
@@ -22,35 +21,39 @@
                 <div class="fixed-task-list">
                     <div class="all-task">
                         <img src="assets/images/inbox.png" alt="Yellow inbox" srcset="">
-                        <div class="all-task-name">All Tasks</div>
+                        <div data-tasktype="all" class="all-task-name task-duration">All Tasks</div>
                     </div>
                     <div class="today-task">
                         <img src="assets/images/today1.png" alt="Today calender" srcset="">
-                        <div class="today-task-name">Today</div>
+                        <div data-tasktype="today" class="today-task-name task-duration">Today</div>
                     </div>
                     <div class="this-week-task">
                         <img src="assets/images/week2.png" alt="week calender" srcset="">
-                        <div class="week-task-name">Next 7 Days</div>
+                        <div data-tasktype="weekly" class="week-task-name task-duration">Next 7 Days</div>
                     </div>
                     <div class="important-task">
                         <img src="assets/images/star.png" alt="yellow start" srcset="">
-                        <div class="important-task-name">Important</div>
+                        <div data-tasktype="important" class="important-task-name task-duration">Important</div>
                     </div>
                 </div>
             </div>
             <div class="projects-list">
                 <h2>Projects</h2>
                 <div class="add-project">
-                    <div class="add-project-field">
-                        <div class="add-project-input">
-                            <label for="input-project-name"><i class="fa-solid fa-bars fa-lg"></i></label>
-                            <input type="text" name="project-name" id="input-project-name"
-                                placeholder="Enter Project Name">
-                        </div>
-                        <div class="add-project-btn">
-                            <button class="btn-add">Add</button>
-                            <button class="btn-cancel">Cancel</button>
-                        </div>
+                    <div class="project-list"></div>
+                    <div class="add-project-field hidden">
+                        <form id="add-project" class="add-project-input">
+                            <div class="project-input-field">
+                                <label for="input-project-name">
+                                    <i class="fa-solid fa-bars fa-lg"></i>
+                                </label>
+                                <input type="text" name="project-name" id="input-project-name" placeholder="Enter Project Name" required>
+                            </div>
+                            <div class="add-project-btn">
+                                <button type="submit" class="btn-add">Add</button>
+                                <button type="button" class="btn-cancel">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="add-project-text">
                         <i class="fa-solid fa-plus"></i>
@@ -60,9 +63,19 @@
             </div>
         </aside>
         <section class="todo-list-section">
-            <h2>All tasks</h2>
+            <h2 class="project-board">All Tasks</h2>
+            <form id="get-todo" class="add-task">
+                <input type="text" name="task-name" id="task-name" placeholder="Your Task" required>
+                <input type="date" name="date" id="pick-date" required>
+                <select name="task-priority" id="priority">
+                    <option value="urgent">Urgent</option>
+                    <option value="normal">Normal</option>
+                </select>
+                <button type="submit" class="add-task-btn">+</button>
+            </form>
             <div class="task-list">
-                <div class="show-task-list"></div>
+                <div class="show-task-list">
+                </div>
             </div>
         </section>
     </div>

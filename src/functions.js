@@ -1,4 +1,8 @@
 import { activeProject, allProject } from "./index.js";
+import deleteImg from './assets/images/delete.svg';
+import editImg from './assets/images/edit.svg';
+
+
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
@@ -39,25 +43,21 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     btnTodoPriority.textContent = taskPriority;
 
     // delete
-    let faDelDiv = document.createElement("div"); 
-    let faDelete = document.createElement("i");
-    faDelete.classList.add("fa-solid", "fa-delete-left");
-    faDelete.setAttribute("title", "Delete Todo");
-    faDelete.classList.add("delete-todo");
-    faDelDiv.appendChild(faDelete);
-    faDelDiv.addEventListener("click",(e)=>{
+    let faDelImg = document.createElement("img"); 
+    faDelImg.src = deleteImg;
+    faDelImg.alt = "delete todo";
+    faDelImg.classList.add("delete-todo");
+    faDelImg.addEventListener("click",(e)=>{
         console.log("delete");
     })
 
 
     // edit 
-    let faEditDiv = document.createElement("div"); 
-    let faEdit = document.createElement("i");
-    faEdit.classList.add("fa-solid", "fa-pen-to-square");
-    faEdit.setAttribute("title", "Edit Todo");
-    faEdit.classList.add("edit-todo");
-    faEditDiv.appendChild(faEdit);
-    faEditDiv.addEventListener("click",(e)=>{
+    let faEditImg = document.createElement("img");
+    faEditImg.src = editImg;
+    faEditImg.alt = "edit todo"; 
+    faEditImg.classList.add("edit-todo");
+    faEditImg.addEventListener("click",(e)=>{
         console.log("edit");
     })
 
@@ -72,8 +72,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     otherDiv.classList.add("todo-right-side");
     otherDiv.appendChild(divTodoDate);
     otherDiv.appendChild(btnTodoPriority);
-    otherDiv.appendChild(faDelDiv);
-    otherDiv.appendChild(faEditDiv);
+    otherDiv.appendChild(faDelImg);
+    otherDiv.appendChild(faEditImg);
 
     // div that contain all todo element
     let div = document.createElement("div");
