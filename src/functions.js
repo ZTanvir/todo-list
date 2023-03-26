@@ -47,8 +47,18 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faDelImg.src = deleteImg;
     faDelImg.alt = "delete todo";
     faDelImg.classList.add("delete-todo");
+    faDelImg.setAttribute("data-checkboxindex",taskSerial);
+    faDelImg.setAttribute("data-activeproject",activeProject);
     faDelImg.addEventListener("click",(e)=>{
-        console.log("delete");
+        let taskIndex = Number(e.target.dataset.checkboxindex);
+        let taskActiveProject = e.target.dataset.activeproject;
+        // remove task from all project
+        delete allProject[taskActiveProject][taskIndex];
+
+        // remove html element
+        e.target.parentNode.parentNode.remove();
+        console.log(taskIndex,taskActiveProject);
+
     })
 
 
