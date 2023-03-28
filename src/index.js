@@ -18,6 +18,7 @@ let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
 let todoTaskListEl = document.querySelector(".show-task-list");
 let allTask = document.querySelectorAll(".task-duration");
+let modal = document.querySelector("#modal");
 
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
@@ -211,4 +212,10 @@ allTask.forEach((task)=>{
     })
 })
 
-export {allProject,activeProject};
+// close modal
+let closeModalBtn = document.querySelector(".close-modal");
+closeModalBtn.addEventListener("click",()=>{
+    modal.close();
+})
+
+export {allProject,activeProject,modal};

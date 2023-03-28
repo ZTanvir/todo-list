@@ -1,4 +1,4 @@
-import { activeProject, allProject } from "./index.js";
+import { activeProject, allProject,modal } from "./index.js";
 import deleteImg from './assets/images/delete.svg';
 import editImg from './assets/images/edit.svg';
 
@@ -69,6 +69,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faEditImg.classList.add("edit-todo");
     faEditImg.addEventListener("click",(e)=>{
         console.log("edit");
+        console.log(allProject);
+        modal.showModal();
     })
 
     // contain checkbox and id

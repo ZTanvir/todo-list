@@ -285,4 +285,21 @@ input[type="date"] {
 }
 :is(.edit-todo,.delete-todo){
   width: 36px;
+  cursor: pointer;
+}
+#modal{
+  top: 50%;
+  left: 50%;
+  width: 40rem;
+  /* height: 18em; */
+  transform: translate(-50%, -50%);
+  position: fixed;
+  border: 1px solid var(--accentDark);
+}
+#modal::backdrop{
+  background:  rgba(212.0, 241.0, 224.0, 0.9)	;
+}
+#modal__form{
+  display: flex;
+  justify-content: space-between;
 }
