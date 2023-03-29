@@ -47,15 +47,20 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faDelImg.src = deleteImg;
     faDelImg.alt = "delete todo";
     faDelImg.classList.add("delete-todo");
-    faDelImg.setAttribute("data-checkboxindex",taskSerial);
+    faDelImg.setAttribute("data-taskdelindex",taskSerial);
     faDelImg.setAttribute("data-activeproject",activeProject);
     faDelImg.setAttribute("title","Delete Task");
     faDelImg.addEventListener("click",(e)=>{
-        let taskIndex = Number(e.target.dataset.checkboxindex);
+        let taskIndex = Number(e.target.dataset.taskdelindex);
         let taskActiveProject = e.target.dataset.activeproject;
-        // remove task from all project
-        allProject[taskActiveProject].splice(allProject[taskActiveProject],1);
-
+        // find the index of an array,remove the item;
+        /* 
+            Alternative solution
+            * search array by task name and find the index of the array
+            * Then remove the index.
+            * Array.index of method can do this
+        */
+        allProject[taskActiveProject].splice(taskIndex,1);
         // remove html element
         e.target.parentNode.parentNode.remove();
     })
@@ -67,6 +72,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faEditImg.alt = "edit todo";
     faEditImg.setAttribute("title","Edit Task"); 
     faEditImg.classList.add("edit-todo");
+    faEditImg.setAttribute("data-edittaskindex",taskSerial);
+    faEditImg.setAttribute("data-activeproject",activeProject);
     faEditImg.addEventListener("click",(e)=>{
         console.log("edit");
         console.log(allProject);
