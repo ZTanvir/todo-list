@@ -84,19 +84,18 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         modal.showModal();
         // this event will run once
         modalForm.addEventListener("submit",(event)=>{
-            let [a,b,c] = [modalTaskName.value,modalTaskdate.value,modalTaskPriority.value];
-            console.log(a,b,c);
             let taskActiveProject = e.target.dataset.activeproject;
+            
             // find the index of an array,remove the item;
             let todoNode = e.target.parentNode.parentNode;
             let taskContent = todoNode.firstChild.lastChild.firstChild.textContent;
             let taskIndex = allProject[taskActiveProject].map(item => item.taskName).indexOf(taskContent);
+            
             // update task with new data
             // {taskName: 'q', taskDate: '2023-04-01', taskPriority: 'normal', taskDone: false}
             allProject[taskActiveProject][taskIndex]['taskName'] = modalTaskName.value;
             allProject[taskActiveProject][taskIndex]['taskDate'] = modalTaskdate.value;
             allProject[taskActiveProject][taskIndex]['taskPriority'] = modalTaskPriority.value;
-            console.log(allProject[taskActiveProject][taskIndex]);
             
             // update the node -> but it just replace the value
             // didn't render the task
@@ -107,8 +106,9 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             oldTaskName.textContent = modalTaskName.value;
             oldTaskDate.textContent = modalTaskdate.value;
             oldTaskPriority.textContent = modalTaskPriority.value;
-        },{once : true});
 
+        },{once : true});
+        // reset the form
         modalForm.reset();        
     })
 
