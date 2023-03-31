@@ -51,7 +51,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faDelImg.setAttribute("data-activeproject",activeProject);
     faDelImg.setAttribute("title","Delete Task");
     faDelImg.addEventListener("click",(e)=>{
-        let taskIndex = Number(e.target.dataset.taskdelindex);
+        // let taskIndex = Number(e.target.dataset.taskdelindex);
         let taskActiveProject = e.target.dataset.activeproject;
         // find the index of an array,remove the item;
         /* 
@@ -59,10 +59,17 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             * search array by task name and find the index of the array
             * Then remove the index.
             * Array.index of method can do this
+            * bug - if two list has same name ,when we want to delete the last
+            * created task,it will remove the first one 
         */
-        allProject[taskActiveProject].splice(taskIndex,1);
         // remove html element
+        let todoNode = e.target.parentNode.parentNode;
+        let taskContent = todoNode.firstChild.lastChild.firstChild.textContent;
+        let taskIndex = allProject[taskActiveProject].map(item => item.taskName).indexOf(taskContent);
+        allProject[taskActiveProject].splice(taskIndex,1);
+
         e.target.parentNode.parentNode.remove();
+       
     })
 
 
