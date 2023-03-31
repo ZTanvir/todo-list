@@ -1,4 +1,4 @@
-import { activeProject, allProject,modal } from "./index.js";
+import { activeProject, allProject,modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority } from "./index.js";
 import deleteImg from './assets/images/delete.svg';
 import editImg from './assets/images/edit.svg';
 
@@ -47,7 +47,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faDelImg.src = deleteImg;
     faDelImg.alt = "delete todo";
     faDelImg.classList.add("delete-todo");
-    faDelImg.setAttribute("data-taskdelindex",taskSerial);
+    // faDelImg.setAttribute("data-taskdelindex",taskSerial);
     faDelImg.setAttribute("data-activeproject",activeProject);
     faDelImg.setAttribute("title","Delete Task");
     faDelImg.addEventListener("click",(e)=>{
@@ -62,12 +62,11 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             * bug - if two list has same name ,when we want to delete the last
             * created task,it will remove the first one 
         */
-        // remove html element
         let todoNode = e.target.parentNode.parentNode;
         let taskContent = todoNode.firstChild.lastChild.firstChild.textContent;
         let taskIndex = allProject[taskActiveProject].map(item => item.taskName).indexOf(taskContent);
         allProject[taskActiveProject].splice(taskIndex,1);
-
+        // remove html element
         e.target.parentNode.parentNode.remove();
        
     })
@@ -85,6 +84,24 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         console.log("edit");
         console.log(allProject);
         modal.showModal();
+        // this event will run once
+        modalForm.addEventListener("submit",(event)=>{
+            let [a,b,c] = [modalTaskName.value,modalTaskdate.value,modalTaskPriority.value];
+            console.log(a,b,c);
+            let taskActiveProject = e.target.dataset.activeproject;
+            // find the index of an array,remove the item;
+            let todoNode = e.target.parentNode.parentNode;
+            let taskContent = todoNode.firstChild.lastChild.firstChild.textContent;
+            let taskIndex = allProject[taskActiveProject].map(item => item.taskName).indexOf(taskContent);
+            // update task with new data
+            // {taskName: 'q', taskDate: '2023-04-01', taskPriority: 'normal', taskDone: false}
+            allProject[taskActiveProject][taskIndex]['taskName'] = modalTaskName.value;
+            allProject[taskActiveProject][taskIndex]['taskDate'] = modalTaskdate.value;
+            allProject[taskActiveProject][taskIndex]['taskPriority'] = modalTaskPriority.value;
+            console.log(allProject[taskActiveProject][taskIndex]);
+        },{once : true});
+
+        modalForm.reset();        
     })
 
     // contain checkbox and id

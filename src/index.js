@@ -18,7 +18,11 @@ let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
 let todoTaskListEl = document.querySelector(".show-task-list");
 let allTask = document.querySelectorAll(".task-duration");
-let modal = document.querySelector("#modal");
+const modal = document.querySelector("#modal");
+const modalForm = document.querySelector("#modal__form");
+const modalTaskName = document.querySelector("#modal-task-name");
+const modalTaskdate = document.querySelector("#modal-pick-date");
+const modalTaskPriority = document.querySelector("#modal-priority");
 
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
@@ -218,4 +222,4 @@ closeModalBtn.addEventListener("click",()=>{
     modal.close();
 })
 
-export {allProject,activeProject,modal};
+export {allProject,activeProject,modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority};
