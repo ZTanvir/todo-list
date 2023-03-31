@@ -303,3 +303,6 @@ input[type="date"] {
   display: flex;
   justify-content: space-between;
 }
+.fixed-task .important-task{
+  display: none;
+}

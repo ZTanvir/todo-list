@@ -81,8 +81,6 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faEditImg.setAttribute("data-edittaskindex",taskSerial);
     faEditImg.setAttribute("data-activeproject",activeProject);
     faEditImg.addEventListener("click",(e)=>{
-        console.log("edit");
-        console.log(allProject);
         modal.showModal();
         // this event will run once
         modalForm.addEventListener("submit",(event)=>{
@@ -99,6 +97,16 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             allProject[taskActiveProject][taskIndex]['taskDate'] = modalTaskdate.value;
             allProject[taskActiveProject][taskIndex]['taskPriority'] = modalTaskPriority.value;
             console.log(allProject[taskActiveProject][taskIndex]);
+            
+            // update the node -> but it just replace the value
+            // didn't render the task
+            let oldTaskName = e.target.parentNode.parentNode.firstChild.lastChild.firstChild;
+            let oldTaskDate = e.target.parentNode.parentNode.lastChild.firstChild;
+            let oldTaskPriority = e.target.parentNode.parentNode.lastChild.firstChild.nextElementSibling;
+
+            oldTaskName.textContent = modalTaskName.value;
+            oldTaskDate.textContent = modalTaskdate.value;
+            oldTaskPriority.textContent = modalTaskPriority.value;
         },{once : true});
 
         modalForm.reset();        

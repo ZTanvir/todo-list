@@ -100,6 +100,7 @@ projectForm.addEventListener("submit", (e) => {
 // Hide a project input field when click on cancel btn
 cancelBtnEl.addEventListener("click", () => {
     projectField.classList.toggle("hidden");
+    projectForm.reset();
 })
 
 // Create todo class
