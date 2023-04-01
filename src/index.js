@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import "./style.css";
 import 'normalize.css';
-import { differenceInDays} from 'date-fns'
+import { differenceInDays,format} from 'date-fns'
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
@@ -160,7 +160,9 @@ allTask.forEach((task)=>{
                     }
                 }   
             }
-        }else if(taskName === "today"){
+        }
+        
+        else if(taskName === "today"){
             projectBoardEl.textContent = "Today";
             clearDiv(".show-task-list");
             if(projectSize === 0){
@@ -173,8 +175,9 @@ allTask.forEach((task)=>{
                     let projectListArray = allProject[item];
                     activeProject = item;
                     for (let i = 0; i < projectListArray.length; i++) {
-                        let todoDate = new Date(projectListArray[i].taskDate).getTime();
-                        let todayDateFormate = new Date(formateToday).getTime();
+                        let todoDate = format(new Date(projectListArray[i].taskDate),'MM/dd/yyyy');
+                        let todayDateFormate = format(new Date(formateToday),'MM/dd/yyyy');
+                        console.log(todoDate,todayDateFormate);
                         if(todayDateFormate == todoDate){
                             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                         }
@@ -182,7 +185,9 @@ allTask.forEach((task)=>{
                 }   
             }
 
-        }else if(taskName === "weekly"){
+        }
+        
+        else if(taskName === "weekly"){
             projectBoardEl.textContent = "Next 7 Days";
 
             clearDiv(".show-task-list");
@@ -210,7 +215,8 @@ allTask.forEach((task)=>{
                 }   
             }
 
-        }else if(taskName === "important"){
+        }
+        else if(taskName === "important"){
             projectBoardEl.textContent = "Important";
             clearDiv(".show-task-list");
         }
