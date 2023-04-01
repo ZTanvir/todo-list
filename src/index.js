@@ -14,15 +14,19 @@ const projectFieldEl = document.querySelector("#input-project-name");
 const projectListEl = document.querySelector(".project-list");
 const addProjectEl = document.querySelector(".add-project-text");
 const projectField = document.querySelector(".add-project-field");
+
 let projectBoardEl = document.querySelector(".project-board");
 let projectsEl = document.querySelectorAll('.projects');
 let todoTaskListEl = document.querySelector(".show-task-list");
 let allTask = document.querySelectorAll(".task-duration");
+
 const modal = document.querySelector("#modal");
 const modalForm = document.querySelector("#modal__form");
 const modalTaskName = document.querySelector("#modal-task-name");
 const modalTaskdate = document.querySelector("#modal-pick-date");
 const modalTaskPriority = document.querySelector("#modal-priority");
+const closeModalBtn = document.querySelector(".close-modal");
+
 
 // btn
 const addTaskBtn = document.querySelector(".add-task-btn");
@@ -182,7 +186,9 @@ allTask.forEach((task)=>{
                 }   
             }
 
-        }else if(taskName === "weekly"){
+        }
+        // from tommorrow to next 7 days.
+        else if(taskName === "weekly"){
             projectBoardEl.textContent = "Next 7 Days";
 
             clearDiv(".show-task-list");
@@ -203,7 +209,7 @@ allTask.forEach((task)=>{
                             new Date(todoDate),
                             new Date(todayDateFormate)
                         )
-                        if(intervalFromToday >= 0 && intervalFromToday <= 7){
+                        if(intervalFromToday > 0 && intervalFromToday <= 7){
                             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                         }
                     }
@@ -218,7 +224,6 @@ allTask.forEach((task)=>{
 })
 
 // close modal
-let closeModalBtn = document.querySelector(".close-modal");
 closeModalBtn.addEventListener("click",()=>{
     modal.close();
 })
