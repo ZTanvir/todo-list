@@ -82,6 +82,22 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faEditImg.setAttribute("data-activeproject",activeProject);
     faEditImg.addEventListener("click",(e)=>{
         modal.showModal();
+
+        let oldTaskName = e.target.parentNode.parentNode.firstChild.lastChild.firstChild;
+        let oldTaskDate = e.target.parentNode.parentNode.lastChild.firstChild;
+        let oldTaskPriority = e.target.parentNode.parentNode.lastChild.firstChild.nextElementSibling;
+
+        // insert task data to update task form fields
+        modalTaskName.setAttribute("value",oldTaskName.textContent);
+        modalTaskdate.setAttribute("value",oldTaskDate.textContent);
+        let modalTaskArr = [...modalTaskPriority];
+        modalTaskArr.forEach(item =>{
+            if(item.value == oldTaskPriority.textContent){
+                item.setAttribute("selected",true);
+            }
+        })
+        
+        // modalTaskName.value = "dsd";
         // this event will run once
         modalForm.addEventListener("submit",(event)=>{
             let taskActiveProject = e.target.dataset.activeproject;
@@ -99,10 +115,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             
             // update the node -> but it just replace the value
             // didn't render the task
-            let oldTaskName = e.target.parentNode.parentNode.firstChild.lastChild.firstChild;
-            let oldTaskDate = e.target.parentNode.parentNode.lastChild.firstChild;
-            let oldTaskPriority = e.target.parentNode.parentNode.lastChild.firstChild.nextElementSibling;
-
+           
             oldTaskName.textContent = modalTaskName.value;
             oldTaskDate.textContent = modalTaskdate.value;
             oldTaskPriority.textContent = modalTaskPriority.value;
