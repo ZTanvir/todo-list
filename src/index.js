@@ -181,7 +181,6 @@ allTask.forEach((task)=>{
                     for (let i = 0; i < projectListArray.length; i++) {
                         let todoDate = format(new Date(projectListArray[i].taskDate),'MM/dd/yyyy');
                         let todayDateFormate = format(new Date(formateToday),'MM/dd/yyyy');
-                        console.log(todoDate,todayDateFormate);
                         if(todayDateFormate == todoDate){
                             renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
                         }
