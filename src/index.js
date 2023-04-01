@@ -228,4 +228,5 @@ closeModalBtn.addEventListener("click",()=>{
     modal.close();
 })
 
-export {allProject,activeProject,modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority};
+export {allProject,activeProject};
+export {modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority};

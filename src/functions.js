@@ -1,4 +1,5 @@
-import { activeProject, allProject,modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority } from "./index.js";
+import { activeProject, allProject} from "./index.js";
+import {modal,modalForm,modalTaskName,modalTaskdate,modalTaskPriority} from "./index.js";
 import deleteImg from './assets/images/delete.svg';
 import editImg from './assets/images/edit.svg';
 
@@ -6,8 +7,8 @@ import editImg from './assets/images/edit.svg';
 // Genarate html based on todo list 
 const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSerial) => {
     // make the label and checkbox unique for each todo list task
-
     let taskUniqueId = `${taskName}${taskSerial}`;
+    
     // checkbox
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
@@ -47,7 +48,6 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
     faDelImg.src = deleteImg;
     faDelImg.alt = "delete todo";
     faDelImg.classList.add("delete-todo");
-    // faDelImg.setAttribute("data-taskdelindex",taskSerial);
     faDelImg.setAttribute("data-activeproject",activeProject);
     faDelImg.setAttribute("title","Delete Task");
     faDelImg.addEventListener("click",(e)=>{
@@ -97,7 +97,6 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             }
         })
         
-        // modalTaskName.value = "dsd";
         // this event will run once
         modalForm.addEventListener("submit",(event)=>{
             let taskActiveProject = e.target.dataset.activeproject;
