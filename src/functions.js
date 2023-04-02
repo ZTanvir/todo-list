@@ -68,7 +68,7 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
         allProject[taskActiveProject].splice(taskIndex,1);
         // remove html element
         e.target.parentNode.parentNode.remove();
-       
+        localStorage.setItem("allproject",JSON.stringify(allProject));
     })
 
 
@@ -119,6 +119,8 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             oldTaskDate.textContent = modalTaskdate.value;
             oldTaskPriority.textContent = modalTaskPriority.value;
 
+            localStorage.setItem("allproject",JSON.stringify(allProject));
+            console.log(localStorage.JSON.parse(getItem("allproject")));
         },{once : true});
         // reset the form
         modalForm.reset();        
@@ -163,11 +165,15 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             let projectListArray = allProject[checkboxProject];
             projectListArray[checkBoxIndex].taskDone = true;
             // todoList[checkBoxIndex].taskDone =true;
+            localStorage.setItem("allproject",JSON.stringify(allProject));
+            console.log(localStorage.JSON.parse(getItem("allproject")));
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
             let projectListArray = allProject[checkboxProject];
             projectListArray[checkBoxIndex].taskDone = false;
+            localStorage.setItem("allproject",allProject);
+            console.log(localStorage.JSON.parse(getItem("allproject")));
         }
     })
     return div;
@@ -202,4 +208,4 @@ function findActiveProject( projectListNodes ){
     return activeProject;
 }
 
-export { removeActiveClass,findActiveProject, genarateTodoHtml, clearDiv, renderTodoList };
+export { removeActiveClass,findActiveProject, clearDiv, renderTodoList };

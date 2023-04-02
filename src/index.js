@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
-import { removeActiveClass,findActiveProject,genarateTodoHtml, clearDiv, renderTodoList } from './functions.js';
+import { removeActiveClass,findActiveProject, clearDiv, renderTodoList } from './functions.js';
 
 const projectForm = document.querySelector("#add-project");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -34,8 +34,64 @@ const inputTodo = document.querySelector("#get-todo");
 
 // All projects
 let allProject = {};
+
 // Project which one is active now
 let activeProject = null;
+
+window.onload = function(){
+    document.querySelector('.all-task').click();
+};
+
+if(localStorage.length != 0){
+    allProject = JSON.parse(localStorage.getItem("allproject"));
+
+    // loop the allproject
+    for(let item in allProject){
+            // Make the input todo form visiable
+            inputTodo.style.display = "flex";
+            let divEl = document.createElement("div");
+            divEl.textContent = item;
+            //remove all spaces and make it a single project name
+            divEl.dataset.project = item;
+        
+            divEl.classList.add("projects");
+            projectListEl.appendChild(divEl);
+            let localActiveProject = localStorage.getItem("activeproject");
+            if(item == localActiveProject){
+                divEl.classList.add("project-active");
+            }
+    }
+   
+    projectsEl = document.querySelectorAll(".projects");
+
+    // add active class when click on a project 
+    projectsEl.forEach((project)=>{
+        project.addEventListener("click",(e)=>{
+            // make the input todo visiable
+            inputTodo.style.display = "flex";
+            removeActiveClass(projectsEl);
+            project.classList.add("project-active");
+
+            // change project name in the list
+            let projectNameText = e.target.textContent;
+            projectBoardEl.textContent = projectNameText;
+            activeProject = findActiveProject(projectsEl);
+            localStorage.setItem("activeproject",activeProject);
+
+            // when the project already contain todo list
+            // Render it to the screen
+            if(activeProject != null){
+                let projectListArray = allProject[activeProject];
+                // render array item to the screen
+                clearDiv(".show-task-list");
+                for (let i = 0; i < projectListArray.length; i++) {
+                    renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                }
+            }
+        })
+    })        
+}
+
 
 // Show project input field when click on add project
 addProjectEl.addEventListener("click", () => {
@@ -50,7 +106,7 @@ projectForm.addEventListener("submit", (e) => {
     let divEl = document.createElement("div");
     divEl.textContent = projectFieldEl.value;
 
-     // check the project name contains space
+     // check does the project name contains spaces
      if(projectFieldEl.value.includes(" ")){
         //remove all spaces and make it a single project name
         let divideProjectname = projectFieldEl.value.split(" ").join("");
@@ -64,7 +120,8 @@ projectForm.addEventListener("submit", (e) => {
     // Add folder to project
     let projectName = divEl.dataset.project;
     allProject[projectName] = [];
- 
+    localStorage.setItem("allproject",JSON.stringify(allProject));
+    
     projectField.classList.toggle("hidden");
 
     // reset the form
@@ -85,6 +142,7 @@ projectForm.addEventListener("submit", (e) => {
             let projectNameText = e.target.textContent;
             projectBoardEl.textContent = projectNameText;
             activeProject = findActiveProject(projectsEl);
+            localStorage.setItem("activeproject",activeProject);
 
             // when the project already contain todo list
             // Render it to the screen
@@ -126,6 +184,10 @@ inputTodo.addEventListener("submit", (e) => {
     if(activeProject != null){
         let projectListArray = allProject[activeProject];
         projectListArray.push(genarateTodo);
+        localStorage.setItem("allproject",JSON.stringify(allProject));
+        console.log(JSON.parse(localStorage.getItem("allproject")));
+        
+
         // render array item to the screen
         clearDiv(".show-task-list");
         for (let i = 0; i < projectListArray.length; i++) {
