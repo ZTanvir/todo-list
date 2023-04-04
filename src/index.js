@@ -41,6 +41,7 @@ let activeProject = null;
 
 window.onload = function(){
     document.querySelector('.all-task').click();
+    console.log(document.querySelector('.all-task-name'));
 };
 
 if(localStorage.length != 0){

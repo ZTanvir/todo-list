@@ -120,7 +120,6 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             oldTaskPriority.textContent = modalTaskPriority.value;
 
             localStorage.setItem("allproject",JSON.stringify(allProject));
-            console.log(localStorage.JSON.parse(getItem("allproject")));
         },{once : true});
         // reset the form
         modalForm.reset();        
