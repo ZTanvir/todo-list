@@ -55,9 +55,19 @@ if(localStorage.length != 0){
             //remove all spaces and make it a single project name
             divEl.dataset.project = item;
 
+            // Add delete image to project
             let imgNode = document.createElement("img");
             imgNode.src = binImg;
             imgNode.classList.add("delete-project");
+            imgNode.dataset.project = item;
+
+            // Delete the project when click the trash image
+            imgNode.addEventListener("click",(e)=>{
+                let projectName = e.target.dataset.project;
+                delete allProject[projectName];
+                localStorage.setItem("allproject",JSON.stringify(allProject));
+                e.target.parentNode.remove();
+            })
 
             divEl.appendChild(imgNode);
         
@@ -87,13 +97,14 @@ if(localStorage.length != 0){
 
             // when the project already contain todo list
             // Render it to the screen
-            if(activeProject != null){
+            if(activeProject != null && allProject[activeProject] != undefined ){
                 let projectListArray = allProject[activeProject];
+            
                 // render array item to the screen
                 clearDiv(".show-task-list");
-                for (let i = 0; i < projectListArray.length; i++) {
-                    renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
-                }
+                    for (let i = 0; i < projectListArray.length; i++) {
+                        renderTodoList(".show-task-list", projectListArray[i].taskName, projectListArray[i].taskDate, projectListArray[i].taskPriority, projectListArray[i].taskDone, i);
+                    }
             }
         })
     })        
@@ -121,6 +132,22 @@ projectForm.addEventListener("submit", (e) => {
     } else{
         divEl.dataset.project = projectFieldEl.value;
     }
+
+      // Add delete image to project
+      let imgNode = document.createElement("img");
+      imgNode.src = binImg;
+      imgNode.classList.add("delete-project");
+      imgNode.dataset.project = divEl.dataset.project;
+
+      // Delete the project when click the trash image
+      imgNode.addEventListener("click",(e)=>{
+          let projectName = e.target.dataset.project;
+          delete allProject[projectName];
+          localStorage.setItem("allproject",JSON.stringify(allProject));
+          e.target.parentNode.remove();
+      })
+
+      divEl.appendChild(imgNode);
 
     divEl.classList.add("projects");
     projectListEl.appendChild(divEl);
@@ -191,9 +218,7 @@ inputTodo.addEventListener("submit", (e) => {
     if(activeProject != null){
         let projectListArray = allProject[activeProject];
         projectListArray.push(genarateTodo);
-        localStorage.setItem("allproject",JSON.stringify(allProject));
-        console.log(JSON.parse(localStorage.getItem("allproject")));
-        
+        localStorage.setItem("allproject",JSON.stringify(allProject));        
 
         // render array item to the screen
         clearDiv(".show-task-list");
