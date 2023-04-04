@@ -198,6 +198,13 @@ aside {
   margin:10px 0px;
   border: 1px solid var(--accentDark);
   border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.project-list > div > img{
+  width: 10%;
 }
 .fixed-task-list div:hover,
 .add-project-field:hover,

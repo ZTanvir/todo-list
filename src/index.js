@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+import binImg from './assets/images/bin.svg';
 import { removeActiveClass,findActiveProject, clearDiv, renderTodoList } from './functions.js';
 
 const projectForm = document.querySelector("#add-project");
@@ -53,6 +54,12 @@ if(localStorage.length != 0){
             divEl.textContent = item;
             //remove all spaces and make it a single project name
             divEl.dataset.project = item;
+
+            let imgNode = document.createElement("img");
+            imgNode.src = binImg;
+            imgNode.classList.add("delete-project");
+
+            divEl.appendChild(imgNode);
         
             divEl.classList.add("projects");
             projectListEl.appendChild(divEl);
