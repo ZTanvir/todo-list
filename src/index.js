@@ -40,8 +40,7 @@ let allProject = {};
 let activeProject = null;
 
 window.onload = function(){
-    document.querySelector('.all-task').click();
-    console.log(document.querySelector('.all-task-name'));
+    document.querySelector('.all-task-name').click();
 };
 
 if(localStorage.length != 0){
