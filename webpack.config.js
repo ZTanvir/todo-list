@@ -49,6 +49,7 @@ module.exports = {
             // Load a custom template (lodash by default)
             template: 'src/index.html',
             filename: 'index.html',
+            favicon: 'src/assets/images/list.png'
         }),
     ],
     output: {
