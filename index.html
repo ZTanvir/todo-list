@@ -78,14 +78,15 @@
                 </div>
             </div>
             <dialog id="modal">
-                <form method="dialog" id="modal-form">
-                        <input type="text" name="task-name" id="task-name" placeholder="Your Task" required>
-                        <input type="date" name="date" id="pick-date" required>
-                        <select name="task-priority" id="priority">
+                <form method="dialog" id="modal__form">
+                        <input type="text" name="task-name" id="modal-task-name" placeholder="Your Task" required>
+                        <input type="date" name="date" id="modal-pick-date" required>
+                        <select name="task-priority" id="modal-priority">
                             <option value="urgent">Urgent</option>
                             <option value="normal">Normal</option>
                         </select>
-                        <button type="submit" class="add-task-btn">+</button>
+                        <button type="submit" class="add-modal-task-btn">+</button>
+                        <button class="close-modal" type="button">Close</button>
                 </form>
             </dialog>
         </section>
