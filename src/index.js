@@ -30,7 +30,6 @@ const closeModalBtn = document.querySelector(".close-modal");
 
 
 // btn
-const addTaskBtn = document.querySelector(".add-task-btn");
 const inputTodo = document.querySelector("#get-todo");
 
 // All projects
