@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import binImg from './assets/images/bin.svg';
-import { removeActiveClass,findActiveProject, clearDiv, renderTodoList } from './functions.js';
+import { removeActiveClass,findActiveProject, clearDiv, renderTodoList,searchLocalstorageIndex } from './functions.js';
 
 const projectForm = document.querySelector("#add-project");
 const cancelBtnEl = document.querySelector(".btn-cancel");
@@ -43,7 +43,7 @@ window.onload = function(){
     document.querySelector('.all-task-name').click();
 };
 
-if(localStorage.length != 0){
+if(localStorage.length != 0 && searchLocalstorageIndex("allproject") === true){
     allProject = JSON.parse(localStorage.getItem("allproject"));
 
     // loop the allproject

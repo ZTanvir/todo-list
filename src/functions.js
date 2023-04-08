@@ -207,4 +207,15 @@ function findActiveProject( projectListNodes ){
     return activeProject;
 }
 
-export { removeActiveClass,findActiveProject, clearDiv, renderTodoList };
+// Find match between localstorage keyname and function parameter
+function searchLocalstorageIndex (indexName){
+    for (let index = 0; index < localStorage.length; index++) {
+        if(localStorage.key(index) === indexName){
+            return true;
+        }        
+    }
+    return false;
+}
+
+
+export { removeActiveClass,findActiveProject, clearDiv, renderTodoList,searchLocalstorageIndex };
