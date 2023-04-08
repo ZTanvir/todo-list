@@ -165,14 +165,12 @@ const genarateTodoHtml = (taskName, taskDate, taskPriority, taskComplete, taskSe
             projectListArray[checkBoxIndex].taskDone = true;
             // todoList[checkBoxIndex].taskDone =true;
             localStorage.setItem("allproject",JSON.stringify(allProject));
-            console.log(localStorage.JSON.parse(getItem("allproject")));
         }else if (!isCheckboxChecked){
             checkboxName.style.textDecoration = "none";
             // update the taskdone of the todolist
             let projectListArray = allProject[checkboxProject];
             projectListArray[checkBoxIndex].taskDone = false;
             localStorage.setItem("allproject",allProject);
-            console.log(localStorage.JSON.parse(getItem("allproject")));
         }
     })
     return div;
